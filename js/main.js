@@ -189,6 +189,15 @@ function initHeroAnimations() {
   if (heroActions) gsap.set(heroActions, { y: 20, opacity: 0 });
   if (scrollIndicator) gsap.set(scrollIndicator, { opacity: 0, y: 15 });
 
+  // Video Hero Elements
+  const heroCinematicTitle = document.querySelector('.hero-cinematic-title');
+  const heroEmailForm = document.querySelector('.hero-email-form');
+  const heroGlassCards = document.querySelectorAll('.hero-glass-card');
+
+  if (heroCinematicTitle) gsap.set(heroCinematicTitle, { y: 40, opacity: 0 });
+  if (heroEmailForm) gsap.set(heroEmailForm, { y: 24, opacity: 0 });
+  if (heroGlassCards.length) gsap.set(heroGlassCards, { y: 32, opacity: 0 });
+
   const heroTl = gsap.timeline({
     delay: 0.15
   });
@@ -249,6 +258,35 @@ function initHeroAnimations() {
       duration: 0.7,
       ease: 'power3.out'
     }, '-=0.4');
+  }
+
+  // Video Hero Elements Sequence
+  if (heroCinematicTitle) {
+    heroTl.to(heroCinematicTitle, {
+      y: 0,
+      opacity: 1,
+      duration: 1.0,
+      ease: 'power3.out'
+    }, '-=0.6');
+  }
+
+  if (heroEmailForm) {
+    heroTl.to(heroEmailForm, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, '-=0.5');
+  }
+
+  if (heroGlassCards.length) {
+    heroTl.to(heroGlassCards, {
+      y: 0,
+      opacity: 1,
+      duration: 0.9,
+      stagger: 0.14,
+      ease: 'power3.out'
+    }, '-=0.6');
   }
 
   // 8. Add a small delayed fade-in for the scroll indicator
@@ -323,14 +361,14 @@ function initFirstScrollAnimation() {
 
   // 1. Hero Scroll Behavior (Parallax, Content Drift & Fade connected directly via scrub)
   const heroSection = document.querySelector('.hero-section');
-  const heroImage = document.querySelector('.hero-bg-image');
+  const heroMedia = document.querySelector('.hero-bg-video') || document.querySelector('.hero-bg-image');
   const heroContent = document.querySelector('.hero-content');
   const scrollIndicator = document.querySelector('.scroll-indicator');
 
   if (heroSection) {
-    // Subtle parallax on hero image (yPercent: -8, within requested -5 to -10 range)
-    if (heroImage) {
-      gsap.to(heroImage, {
+    // Subtle parallax on hero background video/image (yPercent: -8)
+    if (heroMedia) {
+      gsap.to(heroMedia, {
         yPercent: -8,
         ease: 'none',
         scrollTrigger: {
