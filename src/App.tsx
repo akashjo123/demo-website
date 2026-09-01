@@ -37,41 +37,7 @@ export default function App() {
         <source src="https://assets.mixkit.co/videos/4318/4318-720.mp4" type="video/mp4" />
       </video>
 
-      {/* Animated Architectural Building Beacons */}
-      <div className="pointer-events-none absolute inset-0 z-10 hidden overflow-hidden lg:block" aria-hidden="true">
-        <div className="absolute left-[14%] top-[22%] flex items-center gap-3 animate-fade-in">
-          <div className="relative h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)]">
-            <span className="absolute -inset-1.5 animate-ping rounded-full border border-white/70"></span>
-          </div>
-          <div className="flex flex-col rounded-lg border border-white/20 bg-[#121211]/65 px-3.5 py-2 shadow-2xl backdrop-blur-md">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/60">01 &bull; MANHATTAN TRIBECA</span>
-            <span className="font-serif text-sm font-semibold text-white">The Franklin Penthouse</span>
-            <span className="text-xs font-medium text-white/80">6,200 SQ FT &bull; $14.8M</span>
-          </div>
-        </div>
 
-        <div className="absolute right-[28%] top-[36%] flex items-center gap-3">
-          <div className="relative h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)]">
-            <span className="absolute -inset-1.5 animate-ping rounded-full border border-white/70"></span>
-          </div>
-          <div className="flex flex-col rounded-lg border border-white/20 bg-[#121211]/65 px-3.5 py-2 shadow-2xl backdrop-blur-md">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/60">02 &bull; MONTECITO</span>
-            <span className="font-serif text-sm font-semibold text-white">Villa Solano</span>
-            <span className="text-xs font-medium text-white/80">7,850 SQ FT &bull; $18.9M</span>
-          </div>
-        </div>
-
-        <div className="absolute right-[10%] top-[18%] flex items-center gap-3">
-          <div className="relative h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)]">
-            <span className="absolute -inset-1.5 animate-ping rounded-full border border-white/70"></span>
-          </div>
-          <div className="flex flex-col rounded-lg border border-white/20 bg-[#121211]/65 px-3.5 py-2 shadow-2xl backdrop-blur-md">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/60">03 &bull; ASPEN HIGHLANDS</span>
-            <span className="font-serif text-sm font-semibold text-white">The Glass Pavilion</span>
-            <span className="text-xs font-medium text-white/80">9,400 SQ FT &bull; $22.5M</span>
-          </div>
-        </div>
-      </div>
 
       {/* Main Container */}
       <div className="relative z-10 flex h-full flex-col">
@@ -234,56 +200,7 @@ export default function App() {
             </form>
           </div>
 
-          {/* Right Column: Two Glass Cards */}
-          <div className="flex flex-col gap-4 sm:flex-row lg:w-auto lg:gap-5">
-            {/* Stats Card */}
-            <div className="flex flex-col justify-between rounded-2xl bg-white/10 p-5 backdrop-blur-lg sm:w-64 sm:p-6">
-              <div>
-                <div
-                  style={{ fontFamily: "'Silkscreen', cursive" }}
-                  className="text-3xl font-normal tracking-tight text-[#010101] sm:text-4xl lg:text-white"
-                >
-                  42,500+
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-[#010101]/70 sm:mt-4 lg:text-white/70">
-                  Architectural sanctuaries curated for life's most meaningful chapters.
-                </p>
-              </div>
-            </div>
 
-            {/* Testimonial Card */}
-            <div className="flex flex-col justify-between rounded-2xl bg-white/10 p-5 backdrop-blur-lg sm:w-64 sm:p-6">
-              <div>
-                <div className="mb-3 flex items-center gap-2 sm:mb-4">
-                  <div className="flex h-6 w-6 items-center justify-center rounded bg-black text-xs font-bold text-white">
-                    N
-                  </div>
-                  <span className="text-sm font-semibold text-[#010101] lg:text-white">
-                    North &amp; Key
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed text-[#010101]/80 lg:text-white/80">
-                  &ldquo;They understood our architectural vision immediately, discovering a sanctuary we didn't know existed.&rdquo;
-                </p>
-              </div>
-
-              <div className="mt-4 flex items-center gap-3 sm:mt-5">
-                <img
-                  src="https://i.pravatar.cc/72?img=12"
-                  alt="Sara Klein"
-                  className="h-9 w-9 rounded-full bg-white/20 object-cover"
-                />
-                <div>
-                  <div className="text-sm font-semibold text-[#010101] lg:text-white">
-                    Sara Klein
-                  </div>
-                  <div className="text-xs text-[#010101]/60 lg:text-white/60">
-                    Architectural Resident
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </main>
       </div>
     </section>
