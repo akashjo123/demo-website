@@ -163,150 +163,190 @@ function initMenuOverlay() {
   });
 }
 
-/* --- 5. Hero Cinematic Reveal Animation --- */
+/* --- 5. Hero Architectural Layered Parallax Animation (Estareal Style) --- */
 function initHeroAnimations() {
   if (typeof gsap === 'undefined') return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  
-  const heroContainer = document.querySelector('.hero-bg-container');
-  const heroImage = document.querySelector('.hero-bg-image');
-  const headingLines = document.querySelectorAll('.hero-line-inner');
-  const subText = document.querySelector('.hero-sub-text');
-  const heroActions = document.querySelector('.hero-actions');
-  const scrollIndicator = document.querySelector('.scroll-indicator');
+
+  const heroSection = document.querySelector('.hero-arch-section');
+  const giantTitle = document.querySelector('.hero-arch-giant-title');
+  const villaWrap = document.querySelector('.hero-arch-villa-wrap');
+  const leftContent = document.querySelector('.hero-arch-left');
+  const rightContent = document.querySelector('.hero-arch-right');
+  const scrollIndicator = document.querySelector('.arch-indicator');
   const header = document.querySelector('.site-header');
 
-  // Accessibility: respect user preference for reduced motion
   if (prefersReducedMotion) {
     if (header) gsap.set(header, { opacity: 1, y: 0 });
-    if (heroContainer) gsap.set(heroContainer, { clipPath: 'inset(0% 0% 0% 0%)' });
-    if (heroImage) gsap.set(heroImage, { scale: 1 });
-    if (headingLines.length) gsap.set(headingLines, { y: 0, opacity: 1 });
-    if (subText) gsap.set(subText, { y: 0, opacity: 1 });
-    if (heroActions) gsap.set(heroActions, { y: 0, opacity: 1 });
-    if (scrollIndicator) gsap.set(scrollIndicator, { y: 0, opacity: 1 });
+    if (giantTitle) gsap.set(giantTitle, { opacity: 0.95, y: 0 });
+    if (villaWrap) gsap.set(villaWrap, { opacity: 1, y: 0, scale: 1 });
+    if (leftContent) gsap.set(leftContent, { opacity: 1, y: 0 });
+    if (rightContent) gsap.set(rightContent, { opacity: 1, y: 0 });
     return;
   }
 
-  // 1. Initial State: Keep hero image slightly zoomed (scale: 1.08) and masked
+  // Initial States for Entrance
   if (header) gsap.set(header, { opacity: 0, y: -15 });
-  if (heroContainer) gsap.set(heroContainer, { clipPath: 'inset(10% 8% 8% 8%)' });
-  if (heroImage) gsap.set(heroImage, { scale: 1.08 });
-  if (headingLines.length) gsap.set(headingLines, { y: 60, opacity: 0 });
-  if (subText) gsap.set(subText, { y: 35, opacity: 0 });
-  if (heroActions) gsap.set(heroActions, { y: 20, opacity: 0 });
+  if (giantTitle) gsap.set(giantTitle, { y: 60, opacity: 0, scale: 0.95 });
+  if (villaWrap) gsap.set(villaWrap, { y: 50, opacity: 0, scale: 0.94 });
+  if (leftContent) gsap.set(leftContent, { y: 30, opacity: 0 });
+  if (rightContent) gsap.set(rightContent, { y: 30, opacity: 0 });
   if (scrollIndicator) gsap.set(scrollIndicator, { opacity: 0, y: 15 });
 
-  // Video Hero Elements
-  const heroCinematicTitle = document.querySelector('.hero-cinematic-title');
-  const heroEmailForm = document.querySelector('.hero-email-form');
-  const heroGlassCards = document.querySelectorAll('.hero-glass-card');
-
-  if (heroCinematicTitle) gsap.set(heroCinematicTitle, { y: 40, opacity: 0 });
-  if (heroEmailForm) gsap.set(heroEmailForm, { y: 24, opacity: 0 });
-  if (heroGlassCards.length) gsap.set(heroGlassCards, { y: 32, opacity: 0 });
-
   const heroTl = gsap.timeline({
-    delay: 0.15
+    delay: 0.1,
+    defaults: { ease: 'power3.out' }
   });
 
-  // Soft navigation header fade in
   if (header) {
-    heroTl.to(header, {
-      opacity: 1,
+    heroTl.to(header, { opacity: 1, y: 0, duration: 0.8 });
+  }
+
+  if (giantTitle) {
+    heroTl.to(giantTitle, {
       y: 0,
-      duration: 1.0,
-      ease: 'power2.out'
-    });
-  }
-
-  // 1 & 2. Reveal hero image using smooth clip-path and animate scale from 1.08 to 1.0 over ~1.4s
-  if (heroContainer) {
-    heroTl.to(heroContainer, {
-      clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 1.4,
-      ease: 'power3.inOut'
-    }, '-=0.8');
-  }
-
-  if (heroImage) {
-    heroTl.to(heroImage, {
-      scale: 1.0,
-      duration: 1.4,
-      ease: 'power2.out'
-    }, '<');
-  }
-
-  // 3, 4 & 5. Animate each heading line from y: 60px, opacity: 0 to y: 0, opacity: 1, staggered by 0.1s
-  if (headingLines.length) {
-    heroTl.to(headingLines, {
-      y: 0,
-      opacity: 1,
-      duration: 1.1,
-      stagger: 0.1,
-      ease: 'power3.out'
-    }, '-=0.8');
-  }
-
-  // 6. Fade/slide the supporting paragraph upward after the heading
-  if (subText) {
-    heroTl.to(subText, {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: 'power3.out'
+      opacity: 0.95,
+      scale: 1,
+      duration: 1.2
     }, '-=0.5');
   }
 
-  // 7. Reveal the CTA last with a subtle upward movement
-  if (heroActions) {
-    heroTl.to(heroActions, {
+  if (villaWrap) {
+    heroTl.to(villaWrap, {
       y: 0,
       opacity: 1,
-      duration: 0.7,
-      ease: 'power3.out'
-    }, '-=0.4');
+      scale: 1,
+      duration: 1.3
+    }, '-=0.9');
   }
 
-  // Video Hero Elements Sequence
-  if (heroCinematicTitle) {
-    heroTl.to(heroCinematicTitle, {
+  if (leftContent) {
+    heroTl.to(leftContent, {
       y: 0,
       opacity: 1,
-      duration: 1.0,
-      ease: 'power3.out'
-    }, '-=0.6');
+      duration: 0.8
+    }, '-=0.7');
   }
 
-  if (heroEmailForm) {
-    heroTl.to(heroEmailForm, {
+  if (rightContent) {
+    heroTl.to(rightContent, {
       y: 0,
       opacity: 1,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.5');
+      duration: 0.8
+    }, '-=0.7');
   }
 
-  if (heroGlassCards.length) {
-    heroTl.to(heroGlassCards, {
-      y: 0,
-      opacity: 1,
-      duration: 0.9,
-      stagger: 0.14,
-      ease: 'power3.out'
-    }, '-=0.6');
-  }
-
-  // 8. Add a small delayed fade-in for the scroll indicator
   if (scrollIndicator) {
     heroTl.to(scrollIndicator, {
       opacity: 1,
       y: 0,
-      duration: 0.9,
-      ease: 'power2.out'
-    }, '-=0.2');
+      duration: 0.7
+    }, '-=0.4');
   }
+
+  // Scroll-Driven Multi-Layer 3D Depth Parallax
+  if (typeof ScrollTrigger !== 'undefined' && heroSection) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const scrollTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: heroSection,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0.5,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    // 1. Giant background typography moves upward slower
+    if (giantTitle) {
+      scrollTl.to(giantTitle, {
+        yPercent: -28,
+        opacity: 0.35,
+        ease: 'none'
+      }, 0);
+    }
+
+    // 2. Centerpiece villa moves with 3D scale enhancement
+    if (villaWrap) {
+      scrollTl.to(villaWrap, {
+        yPercent: -12,
+        scale: 1.05,
+        ease: 'none'
+      }, 0);
+    }
+
+    // 3. Bottom left text drifts up and fades
+    if (leftContent) {
+      scrollTl.to(leftContent, {
+        y: -60,
+        opacity: 0,
+        ease: 'none'
+      }, 0);
+    }
+
+    // 4. Bottom right badge drifts up and fades
+    if (rightContent) {
+      scrollTl.to(rightContent, {
+        y: -60,
+        opacity: 0,
+        ease: 'none'
+      }, 0);
+    }
+  }
+
+  initHeroPropertyBadge();
+}
+
+function initHeroPropertyBadge() {
+  const badgeTitle = document.getElementById('hero-badge-title');
+  const badgeLoc = document.getElementById('hero-badge-loc');
+  const badgePrice = document.getElementById('hero-badge-price');
+  const prevBtn = document.getElementById('hero-badge-prev');
+  const nextBtn = document.getElementById('hero-badge-next');
+
+  if (!badgeTitle || !prevBtn || !nextBtn) return;
+
+  const featured = [
+    { title: 'The Franklin Penthouse', loc: '1234 Tribeca Boulevard, New York, NY', price: '$14,800,000' },
+    { title: 'Villa Solano', loc: '884 Foothill Reserve, Montecito, CA', price: '$9,650,000' },
+    { title: 'The Glass Pavilion', loc: '42 Elk Ridge Trail, Aspen, CO', price: '$14,200,000' },
+    { title: 'Casa Verde', loc: '220 Coastal Bluff Way, Malibu, CA', price: '$1,850,000' }
+  ];
+
+  let currentIdx = 0;
+
+  function updateBadge(newIdx) {
+    currentIdx = (newIdx + featured.length) % featured.length;
+    const item = featured[currentIdx];
+
+    if (typeof gsap !== 'undefined') {
+      gsap.to([badgeTitle, badgeLoc, badgePrice], {
+        opacity: 0,
+        y: -5,
+        duration: 0.15,
+        onComplete: () => {
+          badgeTitle.textContent = item.title;
+          badgeLoc.textContent = item.loc;
+          badgePrice.textContent = item.price;
+          gsap.to([badgeTitle, badgeLoc, badgePrice], {
+            opacity: 1,
+            y: 0,
+            duration: 0.25,
+            stagger: 0.04
+          });
+        }
+      });
+    } else {
+      badgeTitle.textContent = item.title;
+      badgeLoc.textContent = item.loc;
+      badgePrice.textContent = item.price;
+    }
+  }
+
+  prevBtn.addEventListener('click', () => updateBadge(currentIdx - 1));
+  nextBtn.addEventListener('click', () => updateBadge(currentIdx + 1));
 }
 
 /* --- 6. ScrollTrigger Reveals for Elements --- */

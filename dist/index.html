@@ -18,7 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DDCbb8k4.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-Cl1E8LNY.css">
 </head>
 <body>
 
@@ -55,7 +55,7 @@
   </div>
 
   <!-- Fixed Navigation Header -->
-  <header class="site-header">
+  <header class="site-header header-solid">
     <div class="container header-container">
       <a href="index.html" class="brand-logo" id="header-brand-logo">
         NORTH <span>&amp;</span> KEY
@@ -80,42 +80,65 @@
     </div>
   </header>
 
-  <!-- 5. HERO SECTION: CINEMATIC FULL-BLEED VIDEO & GLASS CARDS -->
-  <section class="hero-section" id="hero">
-    <!-- Background Video: Cinematic Modern Buildings & Skyline -->
-    <video 
-      autoplay 
-      loop 
-      muted 
-      playsinline 
-      class="hero-bg-video"
-    >
-      <source src="/assets/buildings-BGTzebGa.mp4" type="video/mp4">
-      <source src="https://assets.mixkit.co/videos/4318/4318-720.mp4" type="video/mp4">
-    </video>
+  <!-- 5. HERO SECTION: ARCHITECTURAL LAYERED BANNER (ESTAREAL STYLE) -->
+  <section class="hero-arch-section" id="hero">
+    <!-- Ambient Backdrop -->
+    <div class="hero-arch-backdrop"></div>
 
-    <!-- Content (Bottom Anchored) -->
-    <div class="container hero-content">
-      <div class="hero-headline-wrap">
-        <h1 class="hero-cinematic-title hero-contrast-text">
-          Find the place that moves you
-        </h1>
-        <form class="hero-email-form" onsubmit="event.preventDefault();">
-          <input 
-            type="email" 
-            placeholder="Type your email" 
-            class="hero-email-input" 
-            required
-          >
-          <button type="submit" class="btn-gradient">
-            Explore Residences
-          </button>
-        </form>
+    <!-- Layer 1: Giant Background Display Typography -->
+    <div class="hero-arch-giant-title-wrap">
+      <h1 class="hero-arch-giant-title">NORTH &amp; KEY</h1>
+    </div>
+
+    <!-- Layer 2: Centerpiece Architectural Luxury Residence -->
+    <div class="hero-arch-villa-wrap">
+      <img 
+        src="/assets/hero_villa-BwZCsfZ0.jpg" 
+        alt="Contemporary Architectural Luxury Villa" 
+        class="hero-arch-villa-img"
+      >
+      <div class="hero-arch-villa-fade"></div>
+    </div>
+
+    <!-- Layer 3: Foreground Content Grid (Bottom Anchored) -->
+    <div class="container hero-arch-content">
+      <div class="hero-arch-grid">
+        <!-- Bottom Left: Editorial Manifesto & CTA -->
+        <div class="hero-arch-left">
+          <p class="hero-arch-desc">
+            Discover meticulously crafted homes and sanctuaries, blending contemporary aesthetics with enduring architectural significance.
+          </p>
+          <div class="hero-arch-cta-wrap">
+            <a href="properties.html" class="btn-arch-explore">
+              <span>Explore Portfolio</span>
+              <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bottom Right: Property Card Badge & Controls -->
+        <div class="hero-arch-right">
+          <div class="hero-arch-badge" id="hero-featured-badge">
+            <div class="hero-arch-badge-info">
+              <span class="hero-arch-badge-name" id="hero-badge-title">The Franklin Penthouse</span>
+              <span class="hero-arch-badge-loc" id="hero-badge-loc">1234 Tribeca Boulevard, New York, NY</span>
+              <span class="hero-arch-badge-price" id="hero-badge-price">$14,800,000</span>
+            </div>
+            <div class="hero-arch-badge-controls">
+              <button class="badge-nav-btn prev" id="hero-badge-prev" aria-label="Previous Property">
+                <i data-lucide="arrow-left" style="width:14px;height:14px;"></i>
+              </button>
+              <button class="badge-nav-btn next" id="hero-badge-next" aria-label="Next Property">
+                <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Scroll Indicator -->
-    <div class="scroll-indicator">
+    <div class="scroll-indicator arch-indicator">
       <div class="scroll-line"></div>
       <span>SCROLL</span>
     </div>
