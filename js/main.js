@@ -178,27 +178,35 @@ function initHeroAnimations() {
   const scrollIndicator = document.querySelector('.arch-indicator');
   const header = document.querySelector('.site-header');
 
+  const eyebrow = document.querySelector('.hero-arch-eyebrow');
+  const taglineInitial = document.querySelector('.hero-arch-tagline-initial');
+
   if (prefersReducedMotion || window.innerWidth < 1024) {
     if (header) gsap.set(header, { opacity: 1, y: 0 });
-    if (giantTitle) gsap.set(giantTitle, { opacity: 0.95, y: 0, scale: 1 });
+    if (giantTitle) gsap.set(giantTitle, { opacity: 1, y: 0, scale: 1 });
     if (villaWrap) gsap.set(villaWrap, { opacity: 1, y: 0, scale: 1 });
     if (leftContent) gsap.set(leftContent, { opacity: 1, y: 0 });
     if (rightContent) gsap.set(rightContent, { opacity: 1, y: 0 });
     if (hotspots.length) gsap.set(hotspots, { opacity: 1, y: 0 });
+    if (taglineInitial) gsap.set(taglineInitial, { opacity: 0 });
     initHeroPropertyBadge();
     return;
   }
 
-  // Initial State: elegant resting posture that gracefully blooms on scroll
+  // 1. Initial State: ONLY TEXT IS VISIBLE. House image starts completely hidden down below!
   if (header) gsap.set(header, { opacity: 1, y: 0 });
-  if (giantTitle) gsap.set(giantTitle, { y: 15, opacity: 0.95, scale: 0.98 });
-  if (villaWrap) gsap.set(villaWrap, { y: 90, scale: 0.90, opacity: 0.35 });
-  if (hotspots.length) gsap.set(hotspots, { opacity: 0, y: 15, scale: 0.9 });
-  if (leftContent) gsap.set(leftContent, { opacity: 0, y: 35 });
-  if (rightContent) gsap.set(rightContent, { opacity: 0, x: 40 });
+  if (eyebrow) gsap.set(eyebrow, { opacity: 1, y: 0 });
+  if (giantTitle) gsap.set(giantTitle, { opacity: 1, y: 0, scale: 1 });
+  if (taglineInitial) gsap.set(taglineInitial, { opacity: 1, y: 0 });
+  
+  // House is 100% hidden at the start (opacity: 0, pushed down)
+  if (villaWrap) gsap.set(villaWrap, { opacity: 0, y: 180, scale: 0.92 });
+  if (hotspots.length) gsap.set(hotspots, { opacity: 0, y: 20, scale: 0.85 });
+  if (leftContent) gsap.set(leftContent, { opacity: 0, y: 40 });
+  if (rightContent) gsap.set(rightContent, { opacity: 0, x: 50 });
   if (scrollIndicator) gsap.set(scrollIndicator, { opacity: 1, y: 0 });
 
-  // Pinned ScrollTrigger with momentum scrub (1.0s smoothing for silky physics)
+  // 2. Pinned ScrollTrigger scrub: As user scrolls down, house emerges from bottom and blends with text
   if (typeof ScrollTrigger !== 'undefined' && heroSection) {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -206,7 +214,7 @@ function initHeroAnimations() {
       scrollTrigger: {
         trigger: heroSection,
         start: 'top top',
-        end: '+=1800', // Luxurious, unhurried scroll travel
+        end: '+=2000', // Unhurried, luxurious scroll travel
         pin: true,
         scrub: 1.0, // Silky momentum smoothing
         anticipatePin: 1,
@@ -214,52 +222,57 @@ function initHeroAnimations() {
       }
     });
 
-    // Continuous 3D elevation of residence and backdrop typography
+    // Phase 1 (0 -> 0.55): House rises up from bottom and overlaps the text, initial tagline softly fades out
     scrubTimeline
-      .to(giantTitle, {
-        y: -35,
-        scale: 1.02,
-        duration: 1.2,
-        ease: 'none'
-      }, 0)
-      .to(villaWrap, {
-        y: 0,
-        scale: 1,
-        opacity: 1,
-        duration: 1.2,
+      .to(taglineInitial, {
+        opacity: 0,
+        y: -15,
+        duration: 0.45,
         ease: 'none'
       }, 0)
       .to(scrollIndicator, {
         opacity: 0,
-        duration: 0.4,
+        duration: 0.35,
+        ease: 'none'
+      }, 0)
+      .to(giantTitle, {
+        y: -30,
+        duration: 1.1,
+        ease: 'none'
+      }, 0)
+      .to(villaWrap, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.1,
         ease: 'none'
       }, 0);
 
-    // Smooth overlapping fade-in of architectural hotspots and editorial text
+    // Phase 2 (0.45 -> 0.9): Hotspots and bottom editorial content glide in seamlessly
     scrubTimeline
       .to(hotspots, {
         opacity: 1,
         y: 0,
         scale: 1,
         stagger: 0.08,
-        duration: 0.8,
+        duration: 0.7,
         ease: 'none'
       }, 0.5)
       .to(leftContent, {
         opacity: 1,
         y: 0,
-        duration: 0.85,
+        duration: 0.75,
         ease: 'none'
-      }, 0.6)
+      }, 0.55)
       .to(rightContent, {
         opacity: 1,
         x: 0,
-        duration: 0.85,
+        duration: 0.75,
         ease: 'none'
-      }, 0.6);
+      }, 0.55);
 
-    // Natural dwell at full reveal before releasing to the next section
-    scrubTimeline.to({}, { duration: 0.35 });
+    // Settled dwell before releasing pin into next section
+    scrubTimeline.to({}, { duration: 0.3 });
   }
 
   initHeroPropertyBadge();

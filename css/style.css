@@ -660,14 +660,27 @@ input, textarea, select {
 /* Giant Background Typography Behind Villa */
 .hero-arch-giant-title-wrap {
   position: absolute;
-  top: 13%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   text-align: center;
   z-index: 2;
   pointer-events: none;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-arch-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-olive);
+  font-weight: 600;
+  margin-bottom: 12px;
+  will-change: transform, opacity;
 }
 
 .hero-arch-giant-title {
@@ -680,21 +693,34 @@ input, textarea, select {
   text-transform: uppercase;
   margin: 0;
   white-space: nowrap;
-  opacity: 0.95;
+  opacity: 1;
   will-change: transform, opacity;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
 
-/* Centerpiece Villa */
+.hero-arch-tagline-initial {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  margin-top: 16px;
+  max-width: 500px;
+  line-height: 1.4;
+  will-change: transform, opacity;
+}
+
+/* Centerpiece Villa - Starts Hidden Offscreen/Bottom and Rises on Scroll */
 .hero-arch-villa-wrap {
   position: absolute;
-  top: 15%;
+  top: 16%;
   left: 50%;
   transform: translateX(-50%) translateZ(0);
   width: clamp(680px, 78vw, 1300px);
   z-index: 3;
   pointer-events: none;
+  opacity: 0;
   will-change: transform, opacity;
   backface-visibility: hidden;
 }
