@@ -163,7 +163,7 @@ function initMenuOverlay() {
   });
 }
 
-/* --- 5. Hero Architectural Layered Parallax Animation (Estareal Style) --- */
+/* --- 5. Hero Architectural Scroll-Driven Appearance Animation --- */
 function initHeroAnimations() {
   if (typeof gsap === 'undefined') return;
 
@@ -172,128 +172,94 @@ function initHeroAnimations() {
   const heroSection = document.querySelector('.hero-arch-section');
   const giantTitle = document.querySelector('.hero-arch-giant-title');
   const villaWrap = document.querySelector('.hero-arch-villa-wrap');
+  const hotspots = document.querySelectorAll('.hero-villa-hotspot');
   const leftContent = document.querySelector('.hero-arch-left');
   const rightContent = document.querySelector('.hero-arch-right');
   const scrollIndicator = document.querySelector('.arch-indicator');
   const header = document.querySelector('.site-header');
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || window.innerWidth < 1024) {
     if (header) gsap.set(header, { opacity: 1, y: 0 });
-    if (giantTitle) gsap.set(giantTitle, { opacity: 0.95, y: 0 });
+    if (giantTitle) gsap.set(giantTitle, { opacity: 0.95, y: 0, scale: 1 });
     if (villaWrap) gsap.set(villaWrap, { opacity: 1, y: 0, scale: 1 });
     if (leftContent) gsap.set(leftContent, { opacity: 1, y: 0 });
     if (rightContent) gsap.set(rightContent, { opacity: 1, y: 0 });
+    if (hotspots.length) gsap.set(hotspots, { opacity: 1, y: 0 });
+    initHeroPropertyBadge();
     return;
   }
 
-  // Initial States for Entrance
-  if (header) gsap.set(header, { opacity: 0, y: -15 });
-  if (giantTitle) gsap.set(giantTitle, { y: 60, opacity: 0, scale: 0.95 });
-  if (villaWrap) gsap.set(villaWrap, { y: 50, opacity: 0, scale: 0.94 });
-  if (leftContent) gsap.set(leftContent, { y: 30, opacity: 0 });
-  if (rightContent) gsap.set(rightContent, { y: 30, opacity: 0 });
-  if (scrollIndicator) gsap.set(scrollIndicator, { opacity: 0, y: 15 });
+  // Initial State: minimalist start where scrolling reveals the image & details
+  if (header) gsap.set(header, { opacity: 1, y: 0 });
+  if (giantTitle) gsap.set(giantTitle, { y: 25, opacity: 0.95, scale: 0.96 });
+  if (villaWrap) gsap.set(villaWrap, { y: 120, scale: 0.86, opacity: 0.25 });
+  if (hotspots.length) gsap.set(hotspots, { opacity: 0, y: 20, scale: 0.85 });
+  if (leftContent) gsap.set(leftContent, { opacity: 0, y: 40 });
+  if (rightContent) gsap.set(rightContent, { opacity: 0, x: 50 });
+  if (scrollIndicator) gsap.set(scrollIndicator, { opacity: 1, y: 0 });
 
-  const heroTl = gsap.timeline({
-    delay: 0.1,
-    defaults: { ease: 'power3.out' }
-  });
-
-  if (header) {
-    heroTl.to(header, { opacity: 1, y: 0, duration: 0.8 });
-  }
-
-  if (giantTitle) {
-    heroTl.to(giantTitle, {
-      y: 0,
-      opacity: 0.95,
-      scale: 1,
-      duration: 1.2
-    }, '-=0.5');
-  }
-
-  if (villaWrap) {
-    heroTl.to(villaWrap, {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      duration: 1.3
-    }, '-=0.9');
-  }
-
-  if (leftContent) {
-    heroTl.to(leftContent, {
-      y: 0,
-      opacity: 1,
-      duration: 0.8
-    }, '-=0.7');
-  }
-
-  if (rightContent) {
-    heroTl.to(rightContent, {
-      y: 0,
-      opacity: 1,
-      duration: 0.8
-    }, '-=0.7');
-  }
-
-  if (scrollIndicator) {
-    heroTl.to(scrollIndicator, {
-      opacity: 1,
-      y: 0,
-      duration: 0.7
-    }, '-=0.4');
-  }
-
-  // Scroll-Driven Multi-Layer 3D Depth Parallax
+  // Pinned ScrollTrigger scrub: Scrolling down progressively reveals the villa and details!
   if (typeof ScrollTrigger !== 'undefined' && heroSection) {
     gsap.registerPlugin(ScrollTrigger);
 
-    const scrollTl = gsap.timeline({
+    const scrubTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: heroSection,
         start: 'top top',
-        end: 'bottom top',
-        scrub: 0.5,
+        end: '+=1500', // Comfortable scroll distance
+        pin: true,
+        scrub: 0.5, // Crisp, instant, buttery smooth scrub
+        anticipatePin: 1,
         invalidateOnRefresh: true,
       }
     });
 
-    // 1. Giant background typography moves upward slower
-    if (giantTitle) {
-      scrollTl.to(giantTitle, {
-        yPercent: -28,
-        opacity: 0.35,
-        ease: 'none'
-      }, 0);
-    }
-
-    // 2. Centerpiece villa moves with 3D scale enhancement
-    if (villaWrap) {
-      scrollTl.to(villaWrap, {
-        yPercent: -12,
-        scale: 1.05,
-        ease: 'none'
-      }, 0);
-    }
-
-    // 3. Bottom left text drifts up and fades
-    if (leftContent) {
-      scrollTl.to(leftContent, {
-        y: -60,
+    // Phase 1 (0% -> 50%): Giant title elevates, Villa rises & scales into full 3D prominence
+    scrubTimeline
+      .to(giantTitle, {
+        y: -30,
+        scale: 1.02,
+        duration: 1,
+        ease: 'power1.out'
+      }, 'rise')
+      .to(villaWrap, {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        duration: 1,
+        ease: 'power1.out'
+      }, 'rise')
+      .to(scrollIndicator, {
         opacity: 0,
-        ease: 'none'
-      }, 0);
-    }
+        duration: 0.3,
+        ease: 'power1.out'
+      }, 'rise');
 
-    // 4. Bottom right badge drifts up and fades
-    if (rightContent) {
-      scrollTl.to(rightContent, {
-        y: -60,
-        opacity: 0,
-        ease: 'none'
-      }, 0);
-    }
+    // Phase 2 (40% -> 85%): Hotspots pop in, editorial manifesto & property card glide into view
+    scrubTimeline
+      .to(hotspots, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        stagger: 0.12,
+        duration: 0.75,
+        ease: 'back.out(1.5)'
+      }, 'details-=0.3')
+      .to(leftContent, {
+        opacity: 1,
+        y: 0,
+        duration: 0.85,
+        ease: 'power2.out'
+      }, 'details')
+      .to(rightContent, {
+        opacity: 1,
+        x: 0,
+        duration: 0.85,
+        ease: 'power2.out'
+      }, 'details');
+
+    // Dwell briefly at full reveal before unlocking scroll
+    scrubTimeline.to({}, { duration: 0.4 });
   }
 
   initHeroPropertyBadge();
