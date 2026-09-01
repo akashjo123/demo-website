@@ -1092,7 +1092,7 @@ input, textarea, select {
 
 /* --- INTRODUCTION SECTION --- */
 .intro-section {
-  padding: clamp(100px, 14vh, 180px) 0;
+  padding: clamp(60px, 8vh, 96px) 0;
   background-color: var(--bg-canvas);
   border-bottom: 1px solid var(--border-subtle);
 }
@@ -1100,7 +1100,7 @@ input, textarea, select {
 .intro-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: clamp(40px, 8vw, 120px);
+  gap: clamp(32px, 5vw, 64px);
   align-items: start;
 }
 
@@ -1112,8 +1112,8 @@ input, textarea, select {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
-  padding-top: 16px;
+  gap: 24px;
+  padding-top: 12px;
 }
 
 .intro-image-container {
@@ -1137,7 +1137,7 @@ input, textarea, select {
 
 /* --- FEATURED PROPERTIES SECTION --- */
 .featured-section {
-  padding: clamp(100px, 14vh, 180px) 0;
+  padding: clamp(60px, 8vh, 96px) 0;
   background-color: var(--bg-canvas);
 }
 
@@ -1312,7 +1312,7 @@ input, textarea, select {
 
 /* --- SERVICES SECTION (01 BUY / 02 SELL / 03 INVEST) --- */
 .services-section {
-  padding: clamp(100px, 14vh, 180px) 0;
+  padding: clamp(60px, 8vh, 96px) 0;
   background-color: var(--bg-surface);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
@@ -1321,8 +1321,8 @@ input, textarea, select {
 .services-list {
   display: flex;
   flex-direction: column;
-  gap: clamp(70px, 10vh, 140px);
-  margin-top: clamp(60px, 8vh, 100px);
+  gap: clamp(36px, 5vh, 60px);
+  margin-top: clamp(32px, 4vh, 56px);
 }
 
 .service-item {
@@ -1404,7 +1404,7 @@ input, textarea, select {
 
 /* --- FULL-WIDTH STATEMENT SECTION --- */
 .statement-section {
-  padding: clamp(140px, 20vh, 260px) 0;
+  padding: clamp(70px, 9vh, 110px) 0;
   background-color: var(--bg-canvas);
   text-align: center;
   position: relative;
@@ -1440,7 +1440,7 @@ input, textarea, select {
 
 /* --- ABOUT / HUMAN SECTION --- */
 .human-section {
-  padding: clamp(100px, 14vh, 180px) 0;
+  padding: clamp(60px, 8vh, 96px) 0;
   background-color: var(--bg-surface-light);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
@@ -1514,7 +1514,7 @@ input, textarea, select {
 
 /* --- TESTIMONIALS SECTION --- */
 .testimonials-section {
-  padding: clamp(120px, 16vh, 200px) 0;
+  padding: clamp(70px, 9vh, 110px) 0;
   background-color: var(--bg-canvas);
 }
 
@@ -1607,7 +1607,7 @@ input, textarea, select {
 
 /* --- JOURNAL SECTION --- */
 .journal-section {
-  padding: clamp(100px, 14vh, 180px) 0;
+  padding: clamp(60px, 8vh, 96px) 0;
   background-color: var(--bg-surface);
   border-top: 1px solid var(--border-subtle);
 }
@@ -1697,7 +1697,7 @@ input, textarea, select {
 .final-cta-section {
   position: relative;
   width: 100%;
-  padding: clamp(140px, 20vh, 240px) 0;
+  padding: clamp(70px, 9vh, 120px) 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2792,20 +2792,20 @@ input, textarea, select {
 
 /* Narrative Steps (Right Pane) */
 .story-text-pane {
-  padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 80px);
+  padding: clamp(36px, 5vh, 60px) clamp(24px, 5vw, 64px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(80px, 14vh, 160px);
+  gap: clamp(24px, 4vh, 44px);
 }
 
 .story-step-block {
   display: flex;
   flex-direction: column;
   max-width: 520px;
-  opacity: 0.3;
-  transform: translateY(20px);
-  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  opacity: 0.35;
+  transform: translateY(12px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
 .story-step-block.active {
@@ -2815,25 +2815,25 @@ input, textarea, select {
 
 .story-step-num {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
   color: var(--accent-olive);
   font-weight: 400;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   line-height: 1;
 }
 
 .story-step-title {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem);
   font-weight: 300;
   line-height: 1.15;
   color: var(--text-primary);
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .story-step-desc {
-  font-size: 1.05rem;
-  line-height: 1.65;
+  font-size: 0.95rem;
+  line-height: 1.55;
   color: var(--text-secondary);
   font-weight: 300;
 }
