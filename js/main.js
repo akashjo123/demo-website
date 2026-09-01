@@ -694,7 +694,7 @@ function initHorizontalPropertyScroll() {
   });
 }
 
-/* --- 14. Pinned Storytelling Section — Multi-State Narrative Cross-fade with Mandatory Completion --- */
+/* --- 14. Pinned Storytelling Section — Ultra-Smooth Scrubbed Cross-fade --- */
 function initPinnedStorySection() {
   const section = document.querySelector('.pinned-story-section');
   const slides = document.querySelectorAll('.story-visual-slide');
@@ -707,45 +707,60 @@ function initPinnedStorySection() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  const numSteps = stepBlocks.length; // 4 steps
+  // Initial setup: Slide 0 is full opacity, others 0
+  gsap.set(slides, { opacity: 0, scale: 1.04 });
+  gsap.set(slides[0], { opacity: 1, scale: 1 });
 
-  function updateActiveStep(progress) {
-    const rawIndex = Math.floor(progress * numSteps);
-    const activeIndex = Math.max(0, Math.min(numSteps - 1, rawIndex));
+  gsap.set(stepBlocks, { opacity: 0.25 });
+  gsap.set(stepBlocks[0], { opacity: 1 });
+  stepBlocks[0].classList.add('active');
 
-    stepBlocks.forEach((b, i) => {
-      if (i === activeIndex) {
-        b.classList.add('active');
-      } else {
-        b.classList.remove('active');
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: '+=2000', // Snappy, comfortable distance without dragging
+      pin: true,
+      anticipatePin: 1,
+      scrub: 0.4, // Instantaneous, buttery smooth scroll response
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const p = self.progress;
+        let activeIdx = 0;
+        if (p < 0.25) activeIdx = 0;
+        else if (p < 0.55) activeIdx = 1;
+        else if (p < 0.82) activeIdx = 2;
+        else activeIdx = 3;
+
+        stepBlocks.forEach((b, i) => {
+          if (i === activeIdx) {
+            b.classList.add('active');
+          } else {
+            b.classList.remove('active');
+          }
+        });
       }
-    });
-
-    slides.forEach((s, i) => {
-      if (i === activeIndex) {
-        s.classList.add('active');
-      } else {
-        s.classList.remove('active');
-      }
-    });
-  }
-
-  // Pin the entire section until all 4 steps/animations complete
-  ScrollTrigger.create({
-    trigger: section,
-    start: 'top top',
-    end: '+=2400', // Pinned for 2400px of scrolling before releasing to the next section
-    pin: true,
-    anticipatePin: 1,
-    scrub: true,
-    onUpdate: (self) => {
-      updateActiveStep(self.progress);
-    },
-    onLeave: () => {
-      updateActiveStep(1);
-    },
-    onLeaveBack: () => {
-      updateActiveStep(0);
     }
   });
+
+  // Step 0 -> Step 1
+  tl.to(slides[0], { opacity: 0, scale: 1.03, duration: 1, ease: 'none' }, 't1')
+    .to(stepBlocks[0], { opacity: 0.25, duration: 1, ease: 'none' }, 't1')
+    .to(slides[1], { opacity: 1, scale: 1, duration: 1, ease: 'none' }, 't1')
+    .to(stepBlocks[1], { opacity: 1, duration: 1, ease: 'none' }, 't1')
+    .to({}, { duration: 0.4 });
+
+  // Step 1 -> Step 2
+  tl.to(slides[1], { opacity: 0, scale: 1.03, duration: 1, ease: 'none' }, 't2')
+    .to(stepBlocks[1], { opacity: 0.25, duration: 1, ease: 'none' }, 't2')
+    .to(slides[2], { opacity: 1, scale: 1, duration: 1, ease: 'none' }, 't2')
+    .to(stepBlocks[2], { opacity: 1, duration: 1, ease: 'none' }, 't2')
+    .to({}, { duration: 0.4 });
+
+  // Step 2 -> Step 3
+  tl.to(slides[2], { opacity: 0, scale: 1.03, duration: 1, ease: 'none' }, 't3')
+    .to(stepBlocks[2], { opacity: 0.25, duration: 1, ease: 'none' }, 't3')
+    .to(slides[3], { opacity: 1, scale: 1, duration: 1, ease: 'none' }, 't3')
+    .to(stepBlocks[3], { opacity: 1, duration: 1, ease: 'none' }, 't3')
+    .to({}, { duration: 0.3 });
 }
