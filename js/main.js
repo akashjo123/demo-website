@@ -172,7 +172,6 @@ function initHeroAnimations() {
   const heroSection = document.querySelector('.hero-arch-section');
   const giantTitle = document.querySelector('.hero-arch-giant-title');
   const villaWrap = document.querySelector('.hero-arch-villa-wrap');
-  const hotspots = document.querySelectorAll('.hero-villa-hotspot');
   const leftContent = document.querySelector('.hero-arch-left');
   const rightContent = document.querySelector('.hero-arch-right');
   const scrollIndicator = document.querySelector('.arch-indicator');
@@ -187,7 +186,6 @@ function initHeroAnimations() {
     if (villaWrap) gsap.set(villaWrap, { opacity: 1, y: 0, scale: 1 });
     if (leftContent) gsap.set(leftContent, { opacity: 1, y: 0 });
     if (rightContent) gsap.set(rightContent, { opacity: 1, y: 0 });
-    if (hotspots.length) gsap.set(hotspots, { opacity: 1, y: 0 });
     if (taglineInitial) gsap.set(taglineInitial, { opacity: 0 });
     initHeroPropertyBadge();
     return;
@@ -201,7 +199,6 @@ function initHeroAnimations() {
   
   // House is 100% hidden at the start (opacity: 0, pushed down)
   if (villaWrap) gsap.set(villaWrap, { opacity: 0, y: 180, scale: 0.92 });
-  if (hotspots.length) gsap.set(hotspots, { opacity: 0, y: 20, scale: 0.85 });
   if (leftContent) gsap.set(leftContent, { opacity: 0, y: 40 });
   if (rightContent) gsap.set(rightContent, { opacity: 0, x: 50 });
   if (scrollIndicator) gsap.set(scrollIndicator, { opacity: 1, y: 0 });
@@ -253,16 +250,8 @@ function initHeroAnimations() {
         ease: 'none'
       }, 0);
 
-    // Phase 2 (0.45 -> 0.9): Hotspots and bottom editorial content glide in seamlessly
+    // Phase 2 (0.45 -> 0.9): Bottom editorial content & property card glide in seamlessly
     scrubTimeline
-      .to(hotspots, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        stagger: 0.08,
-        duration: 0.7,
-        ease: 'none'
-      }, 0.5)
       .to(leftContent, {
         opacity: 1,
         y: 0,
