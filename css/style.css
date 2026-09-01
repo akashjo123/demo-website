@@ -647,6 +647,7 @@ input, textarea, select {
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: clamp(36px, 5vh, 60px);
+  contain: paint;
 }
 
 .hero-arch-backdrop {
@@ -681,6 +682,8 @@ input, textarea, select {
   white-space: nowrap;
   opacity: 0.95;
   will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Centerpiece Villa */
@@ -688,11 +691,12 @@ input, textarea, select {
   position: absolute;
   top: 15%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(0);
   width: clamp(680px, 78vw, 1300px);
   z-index: 3;
   pointer-events: none;
-  will-change: transform;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .hero-arch-villa-img {
@@ -719,8 +723,9 @@ input, textarea, select {
   gap: 10px;
   pointer-events: auto;
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(15px) translateZ(0);
   will-change: transform, opacity;
+  backface-visibility: hidden;
   z-index: 15;
 }
 

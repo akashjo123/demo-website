@@ -189,16 +189,16 @@ function initHeroAnimations() {
     return;
   }
 
-  // Initial State: minimalist start where scrolling reveals the image & details
+  // Initial State: elegant resting posture that gracefully blooms on scroll
   if (header) gsap.set(header, { opacity: 1, y: 0 });
-  if (giantTitle) gsap.set(giantTitle, { y: 25, opacity: 0.95, scale: 0.96 });
-  if (villaWrap) gsap.set(villaWrap, { y: 120, scale: 0.86, opacity: 0.25 });
-  if (hotspots.length) gsap.set(hotspots, { opacity: 0, y: 20, scale: 0.85 });
-  if (leftContent) gsap.set(leftContent, { opacity: 0, y: 40 });
-  if (rightContent) gsap.set(rightContent, { opacity: 0, x: 50 });
+  if (giantTitle) gsap.set(giantTitle, { y: 15, opacity: 0.95, scale: 0.98 });
+  if (villaWrap) gsap.set(villaWrap, { y: 90, scale: 0.90, opacity: 0.35 });
+  if (hotspots.length) gsap.set(hotspots, { opacity: 0, y: 15, scale: 0.9 });
+  if (leftContent) gsap.set(leftContent, { opacity: 0, y: 35 });
+  if (rightContent) gsap.set(rightContent, { opacity: 0, x: 40 });
   if (scrollIndicator) gsap.set(scrollIndicator, { opacity: 1, y: 0 });
 
-  // Pinned ScrollTrigger scrub: Scrolling down progressively reveals the villa and details!
+  // Pinned ScrollTrigger with momentum scrub (1.0s smoothing for silky physics)
   if (typeof ScrollTrigger !== 'undefined' && heroSection) {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -206,60 +206,60 @@ function initHeroAnimations() {
       scrollTrigger: {
         trigger: heroSection,
         start: 'top top',
-        end: '+=1500', // Comfortable scroll distance
+        end: '+=1800', // Luxurious, unhurried scroll travel
         pin: true,
-        scrub: 0.5, // Crisp, instant, buttery smooth scrub
+        scrub: 1.0, // Silky momentum smoothing
         anticipatePin: 1,
         invalidateOnRefresh: true,
       }
     });
 
-    // Phase 1 (0% -> 50%): Giant title elevates, Villa rises & scales into full 3D prominence
+    // Continuous 3D elevation of residence and backdrop typography
     scrubTimeline
       .to(giantTitle, {
-        y: -30,
+        y: -35,
         scale: 1.02,
-        duration: 1,
-        ease: 'power1.out'
-      }, 'rise')
+        duration: 1.2,
+        ease: 'none'
+      }, 0)
       .to(villaWrap, {
         y: 0,
         scale: 1,
         opacity: 1,
-        duration: 1,
-        ease: 'power1.out'
-      }, 'rise')
+        duration: 1.2,
+        ease: 'none'
+      }, 0)
       .to(scrollIndicator, {
         opacity: 0,
-        duration: 0.3,
-        ease: 'power1.out'
-      }, 'rise');
+        duration: 0.4,
+        ease: 'none'
+      }, 0);
 
-    // Phase 2 (40% -> 85%): Hotspots pop in, editorial manifesto & property card glide into view
+    // Smooth overlapping fade-in of architectural hotspots and editorial text
     scrubTimeline
       .to(hotspots, {
         opacity: 1,
         y: 0,
         scale: 1,
-        stagger: 0.12,
-        duration: 0.75,
-        ease: 'back.out(1.5)'
-      }, 'details-=0.3')
+        stagger: 0.08,
+        duration: 0.8,
+        ease: 'none'
+      }, 0.5)
       .to(leftContent, {
         opacity: 1,
         y: 0,
         duration: 0.85,
-        ease: 'power2.out'
-      }, 'details')
+        ease: 'none'
+      }, 0.6)
       .to(rightContent, {
         opacity: 1,
         x: 0,
         duration: 0.85,
-        ease: 'power2.out'
-      }, 'details');
+        ease: 'none'
+      }, 0.6);
 
-    // Dwell briefly at full reveal before unlocking scroll
-    scrubTimeline.to({}, { duration: 0.4 });
+    // Natural dwell at full reveal before releasing to the next section
+    scrubTimeline.to({}, { duration: 0.35 });
   }
 
   initHeroPropertyBadge();
