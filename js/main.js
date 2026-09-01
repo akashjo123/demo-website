@@ -104,6 +104,13 @@ function initHeaderScroll() {
   const header = document.querySelector('.site-header');
   if (!header) return;
 
+  // If on subpages without dark hero video, keep header permanently solid and high-contrast
+  const hasHero = document.querySelector('.hero-section');
+  if (!hasHero || header.classList.contains('header-solid')) {
+    header.classList.add('scrolled', 'header-solid');
+    return;
+  }
+
   function onScroll() {
     if (window.scrollY > 40) {
       header.classList.add('scrolled');

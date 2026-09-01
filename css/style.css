@@ -384,41 +384,51 @@ input, textarea, select {
   width: 100%;
   z-index: 1000;
   padding: 24px 0;
-  transition: padding 0.4s var(--ease-luxury), background-color 0.4s var(--ease-luxury), border-color 0.4s;
+  transition: padding 0.35s var(--ease-luxury), background-color 0.35s var(--ease-luxury), border-color 0.35s;
   border-bottom: 1px solid transparent;
 }
 
-.site-header.scrolled {
+.site-header.scrolled,
+.site-header.header-solid {
   padding: 16px 0;
-  background-color: rgba(245, 243, 238, 0.94);
+  background-color: rgba(245, 243, 238, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
-.site-header.scrolled .brand-logo {
+.site-header.scrolled .brand-logo,
+.site-header.header-solid .brand-logo {
   color: var(--text-primary);
 }
 
-.site-header.scrolled .nav-link {
+.site-header.scrolled .nav-link,
+.site-header.header-solid .nav-link {
   color: var(--text-primary);
 }
 
-.site-header.scrolled .nav-link:hover {
+.site-header.scrolled .nav-link:hover,
+.site-header.header-solid .nav-link:hover,
+.site-header.scrolled .nav-link.active,
+.site-header.header-solid .nav-link.active {
   color: var(--accent-olive);
 }
 
-.site-header.scrolled .btn-header {
-  border-color: var(--border-medium);
+.site-header.scrolled .btn-header,
+.site-header.header-solid .btn-header {
+  border-color: var(--text-primary);
   color: var(--text-primary);
 }
 
-.site-header.scrolled .btn-header:hover {
+.site-header.scrolled .btn-header:hover,
+.site-header.header-solid .btn-header:hover {
   background-color: var(--text-primary);
   color: #FFFFFF;
 }
 
-.site-header.scrolled .menu-toggle span {
+.site-header.scrolled .menu-toggle span,
+.site-header.header-solid .menu-toggle span {
   background-color: var(--text-primary);
 }
 
