@@ -89,15 +89,47 @@
 
   <!-- 5. HERO SECTION: CINEMATIC FULL-BLEED VIDEO & GLASS CARDS -->
   <section class="hero-section" id="hero">
-    <!-- Background Video (Exact Full-Bleed CloudFront Video) -->
+    <!-- Background Video: Cinematic Modern Buildings & Skyline -->
     <video 
-      src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260803_192301_9231ed6b-c55c-4a48-909c-4ebe11cf2e11.mp4" 
       autoplay 
       loop 
       muted 
       playsinline 
       class="hero-bg-video"
-    ></video>
+    >
+      <source src="videos/buildings.mp4" type="video/mp4">
+      <source src="https://assets.mixkit.co/videos/4318/4318-720.mp4" type="video/mp4">
+    </video>
+
+    <!-- Animated Architectural Building Beacons -->
+    <div class="hero-building-beacons" aria-hidden="true">
+      <div class="building-beacon beacon-1">
+        <div class="beacon-pulse"></div>
+        <div class="beacon-card">
+          <span class="beacon-tag">01 &bull; MANHATTAN TRIBECA</span>
+          <span class="beacon-name">The Franklin Penthouse</span>
+          <span class="beacon-spec">6,200 SQ FT &bull; $14.8M</span>
+        </div>
+      </div>
+      
+      <div class="building-beacon beacon-2">
+        <div class="beacon-pulse"></div>
+        <div class="beacon-card">
+          <span class="beacon-tag">02 &bull; MONTECITO</span>
+          <span class="beacon-name">Villa Solano</span>
+          <span class="beacon-spec">7,850 SQ FT &bull; $18.9M</span>
+        </div>
+      </div>
+      
+      <div class="building-beacon beacon-3">
+        <div class="beacon-pulse"></div>
+        <div class="beacon-card">
+          <span class="beacon-tag">03 &bull; ASPEN HIGHLANDS</span>
+          <span class="beacon-name">The Glass Pavilion</span>
+          <span class="beacon-spec">9,400 SQ FT &bull; $22.5M</span>
+        </div>
+      </div>
+    </div>
 
     <!-- Content (Bottom Anchored) -->
     <div class="container hero-content">

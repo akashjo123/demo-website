@@ -25,15 +25,53 @@ export default function App() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background Video */}
+      {/* Background Video: Modern Buildings & Skyline */}
       <video
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260803_192301_9231ed6b-c55c-4a48-909c-4ebe11cf2e11.mp4"
         autoPlay
         loop
         muted
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
-      />
+      >
+        <source src="videos/buildings.mp4" type="video/mp4" />
+        <source src="https://assets.mixkit.co/videos/4318/4318-720.mp4" type="video/mp4" />
+      </video>
+
+      {/* Animated Architectural Building Beacons */}
+      <div className="pointer-events-none absolute inset-0 z-10 hidden overflow-hidden lg:block" aria-hidden="true">
+        <div className="absolute left-[14%] top-[22%] flex items-center gap-3 animate-fade-in">
+          <div className="relative h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)]">
+            <span className="absolute -inset-1.5 animate-ping rounded-full border border-white/70"></span>
+          </div>
+          <div className="flex flex-col rounded-lg border border-white/20 bg-[#121211]/65 px-3.5 py-2 shadow-2xl backdrop-blur-md">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/60">01 &bull; MANHATTAN TRIBECA</span>
+            <span className="font-serif text-sm font-semibold text-white">The Franklin Penthouse</span>
+            <span className="text-xs font-medium text-white/80">6,200 SQ FT &bull; $14.8M</span>
+          </div>
+        </div>
+
+        <div className="absolute right-[28%] top-[36%] flex items-center gap-3">
+          <div className="relative h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)]">
+            <span className="absolute -inset-1.5 animate-ping rounded-full border border-white/70"></span>
+          </div>
+          <div className="flex flex-col rounded-lg border border-white/20 bg-[#121211]/65 px-3.5 py-2 shadow-2xl backdrop-blur-md">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/60">02 &bull; MONTECITO</span>
+            <span className="font-serif text-sm font-semibold text-white">Villa Solano</span>
+            <span className="text-xs font-medium text-white/80">7,850 SQ FT &bull; $18.9M</span>
+          </div>
+        </div>
+
+        <div className="absolute right-[10%] top-[18%] flex items-center gap-3">
+          <div className="relative h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)]">
+            <span className="absolute -inset-1.5 animate-ping rounded-full border border-white/70"></span>
+          </div>
+          <div className="flex flex-col rounded-lg border border-white/20 bg-[#121211]/65 px-3.5 py-2 shadow-2xl backdrop-blur-md">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/60">03 &bull; ASPEN HIGHLANDS</span>
+            <span className="font-serif text-sm font-semibold text-white">The Glass Pavilion</span>
+            <span className="text-xs font-medium text-white/80">9,400 SQ FT &bull; $22.5M</span>
+          </div>
+        </div>
+      </div>
 
       {/* Main Container */}
       <div className="relative z-10 flex h-full flex-col">
