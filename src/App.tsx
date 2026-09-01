@@ -173,7 +173,7 @@ export default function App() {
           {/* Left Column: Headline + Email CTA */}
           <div className="max-w-xl">
             <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-[#010101] sm:text-4xl lg:text-[3.5rem] lg:text-white">
-              Ship AI workers that grind while you rest
+              Find the place that moves you
             </h1>
 
             {/* Email CTA */}
@@ -191,7 +191,7 @@ export default function App() {
                 style={{ background: 'linear-gradient(to bottom, #2B2B2B, #101010)' }}
                 className="shrink-0 rounded-full px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:py-2.5 text-center"
               >
-                Get started
+                Explore Residences
               </button>
             </form>
           </div>
@@ -208,7 +208,7 @@ export default function App() {
                   42,500+
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-[#010101]/70 sm:mt-4 lg:text-white/70">
-                  Teams run Nexum to handle recurring ops daily.
+                  Architectural sanctuaries curated for life's most meaningful chapters.
                 </p>
               </div>
             </div>
@@ -218,14 +218,14 @@ export default function App() {
               <div>
                 <div className="mb-3 flex items-center gap-2 sm:mb-4">
                   <div className="flex h-6 w-6 items-center justify-center rounded bg-black text-xs font-bold text-white">
-                    S
+                    N
                   </div>
                   <span className="text-sm font-semibold text-[#010101] lg:text-white">
-                    Stratify
+                    North &amp; Key
                   </span>
                 </div>
                 <p className="text-sm leading-relaxed text-[#010101]/80 lg:text-white/80">
-                  &ldquo;With Nexum we went from managing tedious operational work to having AI agents that handle everything.&rdquo;
+                  &ldquo;They understood our architectural vision immediately, discovering a sanctuary we didn't know existed.&rdquo;
                 </p>
               </div>
 
@@ -240,7 +240,7 @@ export default function App() {
                     Sara Klein
                   </div>
                   <div className="text-xs text-[#010101]/60 lg:text-white/60">
-                    Dir of Operations
+                    Architectural Resident
                   </div>
                 </div>
               </div>
