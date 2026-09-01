@@ -2526,4 +2526,333 @@ input, textarea, select {
   }
 }
 
+/* ==========================================================================
+   CINEMATIC PROPERTY REVEAL — SCROLL-CONTROLLED VIDEO ANIMATION
+   ========================================================================== */
+
+.cinematic-reveal-wrapper {
+  position: relative;
+  width: 100%;
+  background-color: #0c0c0b;
+  overflow: visible;
+  /* ScrollTrigger pins this wrapper */
+}
+
+.cinematic-reveal-inner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Background Scrubbed Video */
+.reveal-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+  background-color: #0c0c0b;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Subtle Gradient Scrims */
+.reveal-overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(12, 12, 11, 0.7) 0%, rgba(12, 12, 11, 0.2) 20%, transparent 40%),
+    linear-gradient(0deg, rgba(12, 12, 11, 0.85) 0%, rgba(12, 12, 11, 0.4) 30%, transparent 60%),
+    radial-gradient(ellipse at center, transparent 40%, rgba(12, 12, 11, 0.5) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Top HUD Overlay */
+.reveal-hud-top {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(20px, 4vh, 36px) clamp(24px, 5vw, 64px);
+  width: 100%;
+}
+
+.reveal-hud-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.reveal-hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-sand);
+  box-shadow: 0 0 8px var(--accent-sand);
+}
+
+.reveal-hud-phase {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+/* Captions Container */
+.reveal-captions-container {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.reveal-caption {
+  position: absolute;
+  top: 50%;
+  left: clamp(24px, 7vw, 100px);
+  transform: translateY(-40%);
+  max-width: min(680px, 85vw);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.7s ease;
+  pointer-events: none;
+}
+
+.reveal-caption.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%);
+  pointer-events: auto;
+}
+
+.reveal-eyebrow {
+  display: inline-block;
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-sand);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.reveal-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin: 0;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.reveal-sub {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
+  margin-top: 18px;
+  max-width: 520px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+}
+
+.reveal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.btn-reveal-cta {
+  background: #FFFFFF;
+  color: #121211;
+  padding: 12px 26px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-reveal-cta:hover {
+  background: var(--accent-sand);
+  transform: translateY(-2px);
+}
+
+.btn-reveal-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+.btn-reveal-ghost:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Bottom HUD Overlay */
+.reveal-hud-bottom {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: clamp(20px, 4vh, 36px) clamp(24px, 5vw, 64px);
+  width: 100%;
+}
+
+.reveal-scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.reveal-scroll-line {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-scroll-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: #FFFFFF;
+  animation: revealScrollDrop 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes revealScrollDrop {
+  0% { transform: translateY(-100%); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(300%); opacity: 0; }
+}
+
+/* Hairline Scrub Progress Line */
+.reveal-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 20;
+}
+
+.reveal-progress-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-sand), #FFFFFF);
+  transform-origin: left;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767px) {
+  .reveal-caption {
+    left: 20px;
+    right: 20px;
+    max-width: 100%;
+    top: 52%;
+  }
+
+  .reveal-hud-top {
+    padding: 16px 20px;
+  }
+
+  .reveal-hud-bottom {
+    padding: 16px 20px;
+  }
+
+  .reveal-headline {
+    font-size: 2rem;
+  }
+
+  .reveal-sub {
+    font-size: 0.95rem;
+    margin-top: 10px;
+  }
+
+  .reveal-scroll-indicator {
+    display: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-reveal-wrapper {
+    height: auto !important;
+  }
+  .cinematic-reveal-inner {
+    position: relative !important;
+    height: auto !important;
+    min-height: 560px;
+    padding: 60px 24px;
+  }
+  .reveal-captions-container {
+    position: relative !important;
+    inset: auto !important;
+  }
+  .reveal-caption {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-bottom: 40px;
+  }
+  .reveal-progress-track,
+  .reveal-hud-phase,
+  .reveal-scroll-indicator {
+    display: none !important;
+  }
+}
 

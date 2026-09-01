@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initFirstScrollAnimation();
   initStatementReveal();
+  initScrollControlledVideo();
   initNewsletter();
 });
 
@@ -649,4 +650,139 @@ function initNewsletter() {
       }
     });
   });
+}
+
+/* --- 12. Cinematic Property Reveal — Scroll-Controlled Video Animation --- */
+function initScrollControlledVideo() {
+  const container = document.querySelector('.cinematic-reveal-wrapper');
+  const video = document.getElementById('reveal-scroll-video');
+  if (!container || !video) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    container.classList.add('reduced-motion');
+    return;
+  }
+
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Ensure video is paused so it never auto-plays normally
+  video.pause();
+
+  let videoDuration = 15;
+  const updateDuration = () => {
+    if (video.duration && !isNaN(video.duration) && video.duration > 0) {
+      videoDuration = video.duration;
+    }
+  };
+
+  if (video.readyState >= 1) {
+    updateDuration();
+  } else {
+    video.addEventListener('loadedmetadata', updateDuration, { once: true });
+  }
+
+  // Smooth interpolation state variables
+  let targetProgress = 0;
+  let currentProgress = 0;
+  let isSeeking = false;
+  let rafId = null;
+
+  const captions = container.querySelectorAll('.reveal-caption');
+  const phaseCounter = document.getElementById('reveal-phase-counter');
+  const progressBar = document.getElementById('reveal-progress-fill');
+
+  function updateCaptionsAndHUD(prog) {
+    // 4 Distinct Architectural Story Phases:
+    // Phase 1: 0% to 26% ("Designed for Living" — Wide exterior & sanctuary)
+    // Phase 2: 26% to 52% ("Architecture. Space. Light." — Materiality & entrance)
+    // Phase 3: 52% to 78% ("Where Modern Living Meets Timeless Design" — Spatial transition & interior)
+    // Phase 4: 78% to 100% ("Discover Your Next Address" — Hero final reveal & acquisition)
+    let activeIndex = 0;
+    if (prog < 0.26) {
+      activeIndex = 0;
+    } else if (prog < 0.52) {
+      activeIndex = 1;
+    } else if (prog < 0.78) {
+      activeIndex = 2;
+    } else {
+      activeIndex = 3;
+    }
+
+    captions.forEach((caption, idx) => {
+      if (idx === activeIndex) {
+        caption.classList.add('active');
+      } else {
+        caption.classList.remove('active');
+      }
+    });
+
+    if (phaseCounter) {
+      phaseCounter.textContent = `0${activeIndex + 1} / 04`;
+    }
+
+    if (progressBar) {
+      progressBar.style.transform = `scaleX(${prog})`;
+    }
+  }
+
+  // High-performance RAF render loop with Linear Interpolation (LERP)
+  function renderVideoScrub() {
+    // Smooth factor 0.12 prevents jitter between discrete scroll steps
+    currentProgress += (targetProgress - currentProgress) * 0.12;
+
+    if (Math.abs(targetProgress - currentProgress) > 0.0008) {
+      const targetTime = currentProgress * videoDuration;
+      const clampedTime = Math.max(0, Math.min(targetTime, videoDuration - 0.05));
+
+      if (video.readyState >= 2 && !isSeeking) {
+        if ('fastSeek' in video) {
+          try {
+            video.fastSeek(clampedTime);
+          } catch (err) {
+            video.currentTime = clampedTime;
+          }
+        } else {
+          video.currentTime = clampedTime;
+        }
+      }
+
+      updateCaptionsAndHUD(currentProgress);
+    }
+
+    rafId = requestAnimationFrame(renderVideoScrub);
+  }
+
+  // Create ScrollTrigger pin & scrub controller
+  ScrollTrigger.create({
+    trigger: container,
+    start: 'top top',
+    end: '+=2800', // 2800px provides a luxurious, controlled, cinematic pace
+    pin: true,
+    anticipatePin: 1,
+    scrub: true,
+    onUpdate: (self) => {
+      targetProgress = self.progress;
+    },
+    onEnter: () => {
+      video.pause();
+      if (!rafId) rafId = requestAnimationFrame(renderVideoScrub);
+    },
+    onEnterBack: () => {
+      video.pause();
+      if (!rafId) rafId = requestAnimationFrame(renderVideoScrub);
+    },
+    onLeave: () => {
+      targetProgress = 1;
+      updateCaptionsAndHUD(1);
+    },
+    onLeaveBack: () => {
+      targetProgress = 0;
+      updateCaptionsAndHUD(0);
+    },
+  });
+
+  // Start smooth loop
+  rafId = requestAnimationFrame(renderVideoScrub);
 }
