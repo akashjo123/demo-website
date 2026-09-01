@@ -694,29 +694,27 @@ function initHorizontalPropertyScroll() {
   });
 }
 
-/* --- 14. Pinned Storytelling Section — Multi-State Narrative Cross-fade --- */
+/* --- 14. Pinned Storytelling Section — Multi-State Narrative Cross-fade with Mandatory Completion --- */
 function initPinnedStorySection() {
   const section = document.querySelector('.pinned-story-section');
   const slides = document.querySelectorAll('.story-visual-slide');
   const stepBlocks = document.querySelectorAll('.story-step-block');
   if (!section || !slides.length || !stepBlocks.length) return;
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion || window.innerWidth < 1024) return;
+
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  stepBlocks.forEach((block, idx) => {
-    ScrollTrigger.create({
-      trigger: block,
-      start: 'top 60%',
-      end: 'bottom 40%',
-      onEnter: () => activateStep(idx),
-      onEnterBack: () => activateStep(idx),
-    });
-  });
+  const numSteps = stepBlocks.length; // 4 steps
 
-  function activateStep(index) {
+  function updateActiveStep(progress) {
+    const rawIndex = Math.floor(progress * numSteps);
+    const activeIndex = Math.max(0, Math.min(numSteps - 1, rawIndex));
+
     stepBlocks.forEach((b, i) => {
-      if (i === index) {
+      if (i === activeIndex) {
         b.classList.add('active');
       } else {
         b.classList.remove('active');
@@ -724,11 +722,30 @@ function initPinnedStorySection() {
     });
 
     slides.forEach((s, i) => {
-      if (i === index) {
+      if (i === activeIndex) {
         s.classList.add('active');
       } else {
         s.classList.remove('active');
       }
     });
   }
+
+  // Pin the entire section until all 4 steps/animations complete
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top top',
+    end: '+=2400', // Pinned for 2400px of scrolling before releasing to the next section
+    pin: true,
+    anticipatePin: 1,
+    scrub: true,
+    onUpdate: (self) => {
+      updateActiveStep(self.progress);
+    },
+    onLeave: () => {
+      updateActiveStep(1);
+    },
+    onLeaveBack: () => {
+      updateActiveStep(0);
+    }
+  });
 }
