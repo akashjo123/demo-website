@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NORTH & KEY | Find the place that moves you.</title>
+  <meta name="description" content="North & Key is a luxury editorial real estate agency representing architecturally significant residences and thoughtful spaces.">
+  
+  <!-- Google Fonts: Cormorant Garamond (Serif) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Scripts & Animation Libraries via CDN -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Custom Cursor (Desktop Only) -->
+  <div id="custom-cursor"></div>
+
+  <!-- Fullscreen Editorial Menu Overlay -->
+  <div class="menu-overlay">
+    <div class="menu-overlay-inner">
+      <nav class="menu-overlay-nav">
+        <a href="index.html" class="menu-overlay-link"><span class="num">01</span> Home</a>
+        <a href="properties.html" class="menu-overlay-link"><span class="num">02</span> Properties</a>
+        <a href="properties.html?type=buy" class="menu-overlay-link"><span class="num">03</span> Buy</a>
+        <a href="properties.html?type=sell" class="menu-overlay-link"><span class="num">04</span> Sell</a>
+        <a href="about.html" class="menu-overlay-link"><span class="num">05</span> About</a>
+        <a href="journal.html" class="menu-overlay-link"><span class="num">06</span> Journal</a>
+        <a href="contact.html" class="menu-overlay-link"><span class="num">07</span> Contact</a>
+      </nav>
+      <div class="menu-overlay-aside">
+        <div class="menu-aside-block">
+          <h4>Private Client Advisory</h4>
+          <p>concierge@northandkey.com<br>+1 (310) 892-4400</p>
+        </div>
+        <div class="menu-aside-block">
+          <h4>Locations</h4>
+          <p>Malibu Atelier &bull; Aspen Gallery<br>Tribeca Studio &bull; London Mayfair</p>
+        </div>
+        <div class="menu-aside-block">
+          <h4>Editorial Philosophy</h4>
+          <p class="body-small">"We believe architecture is the quiet backdrop to extraordinary lives."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed Navigation Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" id="header-brand-logo">
+        NORTH <span>&</span> KEY
+      </a>
+      
+      <nav class="header-nav">
+        <a href="properties.html" class="nav-link">Properties</a>
+        <a href="properties.html?action=buy" class="nav-link">Buy</a>
+        <a href="properties.html?action=sell" class="nav-link">Sell</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="journal.html" class="nav-link">Journal</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="properties.html" class="btn-header">Discover</a>
+        <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 5. HERO SECTION -->
+  <section class="hero-section" id="hero">
+    <div class="hero-bg-container">
+      <img 
+        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85" 
+        alt="Modernist architectural home overlooking infinity pool at dusk" 
+        class="hero-bg-image"
+      >
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container hero-content">
+      <div class="hero-grid">
+        <div class="hero-title-wrap">
+          <h1 class="hero-title">
+            <span class="hero-line"><span class="hero-line-inner">Find the</span></span>
+            <span class="hero-line"><span class="hero-line-inner"><em>place</em> that</span></span>
+            <span class="hero-line"><span class="hero-line-inner">moves you.</span></span>
+          </h1>
+        </div>
+
+        <div class="hero-sub-wrap">
+          <p class="hero-sub-text">
+            Thoughtful real estate. Exceptional places crafted for life's most meaningful chapters.
+          </p>
+          <div class="hero-actions">
+            <a href="properties.html" class="btn btn-primary" id="hero-explore-cta">
+              Explore Properties
+              <span class="btn-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </a>
+            <a href="about.html" class="btn btn-outline-light" id="hero-about-cta">
+              Our Ethos
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- 7. INTRODUCTION SECTION -->
+  <section class="intro-section" id="introduction">
+    <div class="container intro-grid">
+      <div class="intro-lead">
+        <span class="eyebrow intro-eyebrow">Philosophy</span>
+        <h2 class="heading-1 intro-heading" style="margin-top: 20px;">
+          Real estate should feel personal.
+        </h2>
+        <div class="intro-image-container" style="margin-top: clamp(32px, 5vh, 48px); width: 100%; aspect-ratio: 16/11; overflow: hidden; position: relative; background: var(--bg-surface);">
+          <img 
+            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1400&q=85" 
+            alt="Refined architectural interior with natural light" 
+            class="intro-image"
+            style="width: 100%; height: 100%; object-fit: cover;"
+          >
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(21, 21, 21, 0.7); backdrop-filter: blur(8px); color: #FFFFFF; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px;">
+            The Monograph Atelier
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-body-wrap">
+        <p class="body-large intro-text">
+          From first conversation to final closing, we bring clarity, local knowledge, and a thoughtful eye to every move. We do not deal in mere square footage; we discover sanctuaries where design elevates everyday existence.
+        </p>
+        <p class="body-medium intro-text">
+          Our private advisory acts as both curator and counselor, matching visionary architects and discerning buyers with properties that command enduring emotional resonance.
+        </p>
+        <div class="intro-text" style="padding: 24px 28px; border-left: 2px solid var(--accent-olive); background: var(--bg-surface); margin: 6px 0;">
+          <p class="font-display" style="font-size: 1.25rem; font-style: italic; color: var(--text-primary); line-height: 1.45;">
+            "A home is not simply where you reside&mdash;it is the quiet foundation upon which your ritual of living is shaped."
+          </p>
+        </div>
+        <a href="about.html" class="link-editorial intro-cta" id="intro-approach-cta">
+          Our Approach <span class="btn-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FEATURED PROPERTIES SECTION -->
+  <section class="featured-section" id="featured-properties">
+    <div class="container">
+      <div class="section-header-editorial">
+        <div>
+          <span class="eyebrow">Curated Collection</span>
+          <h2 class="heading-2" style="margin-top: 16px;">Places worth finding.</h2>
+        </div>
+        <a href="properties.html" class="link-editorial">
+          View All Residences (6) <span class="btn-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span>
+        </a>
+      </div>
+
+      <div class="properties-showcase">
+        
+        <!-- Property 1: Casa Verde -->
+        <a href="property-detail.html?id=casa-verde" class="property-block" data-cursor="view" id="featured-prop-1">
+          <div class="property-image-wrap">
+            <img 
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=85" 
+              alt="Casa Verde Malibu" 
+              class="property-image"
+            >
+            <div class="property-badge">Featured &bull; Malibu</div>
+          </div>
+          <div class="property-meta-wrap">
+            <div class="property-accent-line"></div>
+            <span class="property-location">Malibu, California</span>
+            <h3 class="property-title">CASA VERDE</h3>
+            <div class="property-price">$1,850,000</div>
+            
+            <div class="property-specs-list">
+              <div class="spec-item">
+                <span class="spec-val">4</span>
+                <span class="spec-lbl">Beds</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-val">4.5</span>
+                <span class="spec-lbl">Baths</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-val">5,200</span>
+                <span class="spec-lbl">Sq Ft</span>
+              </div>
+            </div>
+
+            <div class="property-cta">
+              View Property <span class="property-cta-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Property 2: The Glass Pavilion -->
+        <a href="property-detail.html?id=the-glass-pavilion" class="property-block reversed" data-cursor="view" id="featured-prop-2">
+          <div class="property-image-wrap tall">
+            <img 
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85" 
+              alt="The Glass Pavilion Aspen" 
+              class="property-image"
+            >
+            <div class="property-badge">Exclusive &bull; Aspen</div>
+          </div>
+          <div class="property-meta-wrap">
+            <div class="property-accent-line"></div>
+            <span class="property-location">Aspen, Colorado</span>
+            <h3 class="property-title">THE GLASS PAVILION</h3>
+            <div class="property-price">$14,200,000</div>
+            
+            <div class="property-specs-list">
+              <div class="spec-item">
+                <span class="spec-val">5</span>
+                <span class="spec-lbl">Beds</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-val">6.0</span>
+                <span class="spec-lbl">Baths</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-val">6,800</span>
+                <span class="spec-lbl">Sq Ft</span>
+              </div>
+            </div>
+
+            <div class="property-cta">
+              View Property <span class="property-cta-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Property 3: Villa Solano -->
+        <a href="property-detail.html?id=villa-solano" class="property-block" data-cursor="view" id="featured-prop-3">
+          <div class="property-image-wrap">
+            <img 
+              src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=85" 
+              alt="Villa Solano Montecito" 
+              class="property-image"
+            >
+            <div class="property-badge">Private Listing &bull; Montecito</div>
+          </div>
+          <div class="property-meta-wrap">
+            <div class="property-accent-line"></div>
+            <span class="property-location">Montecito, California</span>
+            <h3 class="property-title">VILLA SOLANO</h3>
+            <div class="property-price">$9,650,000</div>
+            
+            <div class="property-specs-list">
+              <div class="spec-item">
+                <span class="spec-val">5</span>
+                <span class="spec-lbl">Beds</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-val">5.5</span>
+                <span class="spec-lbl">Baths</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-val">6,100</span>
+                <span class="spec-lbl">Sq Ft</span>
+              </div>
+            </div>
+
+            <div class="property-cta">
+              View Property <span class="property-cta-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. BUY / SELL / INVEST SECTION -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <span class="eyebrow">Services & Advisory</span>
+      <h2 class="heading-1" style="margin-top: 16px;">A better way to move.</h2>
+
+      <div class="services-list">
+        
+        <!-- 01 BUY -->
+        <div class="service-item">
+          <div class="service-col-meta">
+            <span class="service-num">01</span>
+            <h3 class="service-title">BUY</h3>
+          </div>
+          <div class="service-image-box">
+            <img 
+              src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1400&q=85" 
+              alt="Buying an architectural home with North & Key" 
+              class="service-img"
+            >
+          </div>
+          <div class="service-col-desc">
+            <h4 class="heading-3">Find a home that fits your life.</h4>
+            <p class="service-desc-text">
+              We scout beyond public MLS listings, leveraging off-market relationships across premier architecture networks to find spaces that resonate with your personal ritual.
+            </p>
+            <a href="properties.html?action=buy" class="link-editorial">
+              Begin Search <span class="btn-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 02 SELL (Reversed Layout) -->
+        <div class="service-item reversed">
+          <div class="service-col-meta">
+            <span class="service-num">02</span>
+            <h3 class="service-title">SELL</h3>
+          </div>
+          <div class="service-image-box">
+            <img 
+              src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=1400&q=85" 
+              alt="Selling a luxury home with North & Key" 
+              class="service-img"
+            >
+          </div>
+          <div class="service-col-desc">
+            <h4 class="heading-3">Position your property to stand apart.</h4>
+            <p class="service-desc-text">
+              Every exceptional residence possesses a narrative. We create museum-grade monograph books, cinematic short films, and targeted global placements that captivate high-net-worth collectors.
+            </p>
+            <a href="contact.html?type=sell" class="link-editorial">
+              List Your Property <span class="btn-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 03 INVEST -->
+        <div class="service-item">
+          <div class="service-col-meta">
+            <span class="service-num">03</span>
+            <h3 class="service-title">INVEST</h3>
+          </div>
+          <div class="service-image-box">
+            <img 
+              src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1400&q=85" 
+              alt="Real estate investment advisory" 
+              class="service-img"
+            >
+          </div>
+          <div class="service-col-desc">
+            <h4 class="heading-3">Build a portfolio with purpose.</h4>
+            <p class="service-desc-text">
+              From historic restoration parcels to prime coastal land development, we provide institutional-quality market analytics coupled with an unerring architectural eye.
+            </p>
+            <a href="contact.html?type=invest" class="link-editorial">
+              Private Consultation <span class="btn-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FULL-WIDTH STATEMENT -->
+  <section class="statement-section" id="statement">
+    <div class="container">
+      <span class="eyebrow" style="margin-bottom: 32px;">Manifesto</span>
+      <h2 class="statement-title">
+        <span class="statement-word">Your</span>
+        <span class="statement-word">next</span>
+        <span class="statement-word">chapter</span>
+        <span class="statement-word">deserves</span>
+        <span class="statement-word">the</span>
+        <span class="statement-word">right</span>
+        <span class="statement-word">address.</span>
+      </h2>
+      <div class="statement-decor"></div>
+    </div>
+  </section>
+
+  <!-- 12. ABOUT / HUMAN SECTION -->
+  <section class="human-section" id="about-preview">
+    <div class="container human-grid">
+      <div class="human-image-holder">
+        <img 
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=85" 
+          alt="North & Key partner and architectural director" 
+          class="human-img"
+        >
+        <div class="human-image-badge">
+          <p style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 500;">
+            "Architecture lives in the details."
+          </p>
+          <span style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-olive); margin-top: 6px; display: block;">
+            Elena Vance &bull; Partner
+          </span>
+        </div>
+      </div>
+
+      <div class="human-content">
+        <span class="eyebrow">The Collective</span>
+        <h2 class="heading-1">People make the difference.</h2>
+        <p class="body-large">
+          Behind every transaction is a human journey. Our partners were architects, curators, and institutional advisors before becoming real estate leaders.
+        </p>
+        <p class="body-medium">
+          We intentionally limit the number of properties we represent at any single moment, ensuring uncompromising attention to detail and concierge care for each client.
+        </p>
+
+        <!-- Stats Grid with Counter Animation -->
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" data-target="25" data-suffix="+">0+</span>
+            <span class="stat-label">Advisors & Agents</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="12" data-suffix="">0</span>
+            <span class="stat-label">Global Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="18" data-suffix="">0</span>
+            <span class="stat-label">Years of Experience</span>
+          </div>
+        </div>
+
+        <div>
+          <a href="about.html" class="btn btn-outline" style="margin-top: 16px;">
+            Meet Our Team
+            <span class="btn-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. TESTIMONIAL SECTION -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container testimonial-container">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      
+      <div class="testimonial-slider">
+        <!-- Slide 1 -->
+        <div class="testimonial-slide active">
+          <blockquote class="testimonial-quote">
+            "They didn't just help us find a house. They helped us understand where we wanted our life to go."
+          </blockquote>
+          <div class="testimonial-author">
+            Sarah & Daniel <span>&bull; Malibu Coastal Residence</span>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="testimonial-slide">
+          <blockquote class="testimonial-quote">
+            "Working with North & Key was more akin to collaborating with an architectural salon than a brokerage. Their discretion was impeccable."
+          </blockquote>
+          <div class="testimonial-author">
+            David K. <span>&bull; Aspen Alpine Compound</span>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="testimonial-slide">
+          <blockquote class="testimonial-quote">
+            "Their monograph presentation of our historic loft brought three prospective buyers from Tokyo and London within days of private circulation."
+          </blockquote>
+          <div class="testimonial-author">
+            Claire & Jean-Paul <span>&bull; Tribeca Penthouse</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-controls">
+        <button class="slider-btn slider-prev" aria-label="Previous testimonial">
+          <i data-lucide="chevron-left" style="width:20px;height:20px;"></i>
+        </button>
+        <button class="slider-btn slider-next" aria-label="Next testimonial">
+          <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. JOURNAL SECTION -->
+  <section class="journal-section" id="journal-preview">
+    <div class="container">
+      <div class="section-header-editorial">
+        <div>
+          <span class="eyebrow">Editorial Publication</span>
+          <h2 class="heading-2" style="margin-top: 16px;">From the Journal</h2>
+        </div>
+        <a href="journal.html" class="link-editorial">
+          Read All Essays <span class="btn-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span>
+        </a>
+      </div>
+
+      <div class="journal-grid">
+        
+        <!-- Article 1 -->
+        <a href="journal.html#article-1" class="journal-card">
+          <div class="journal-image-wrap">
+            <img 
+              src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=85" 
+              alt="The Architecture of Home" 
+              class="journal-image"
+            >
+          </div>
+          <div class="journal-meta">
+            <span>Essays</span>
+            <span class="journal-date">August 24, 2026</span>
+          </div>
+          <h3 class="journal-title">The Architecture of Home: Why Space Influences Emotion</h3>
+          <div class="journal-link-arrow">
+            Read Essay <span>&rarr;</span>
+          </div>
+        </a>
+
+        <!-- Article 2 -->
+        <a href="journal.html#article-2" class="journal-card">
+          <div class="journal-image-wrap">
+            <img 
+              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85" 
+              alt="Five Things to Know Before You Buy" 
+              class="journal-image"
+            >
+          </div>
+          <div class="journal-meta">
+            <span>Market Insights</span>
+            <span class="journal-date">July 18, 2026</span>
+          </div>
+          <h3 class="journal-title">Five Things to Know Before You Buy an Architectural Landmark</h3>
+          <div class="journal-link-arrow">
+            Read Guide <span>&rarr;</span>
+          </div>
+        </a>
+
+        <!-- Article 3 -->
+        <a href="journal.html#article-3" class="journal-card">
+          <div class="journal-image-wrap">
+            <img 
+              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85" 
+              alt="The Neighborhoods Defining Tomorrow" 
+              class="journal-image"
+            >
+          </div>
+          <div class="journal-meta">
+            <span>Living</span>
+            <span class="journal-date">June 05, 2026</span>
+          </div>
+          <h3 class="journal-title">The Neighborhoods Defining Tomorrow: Solitude and Connectedness</h3>
+          <div class="journal-link-arrow">
+            Read Perspective <span>&rarr;</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. FINAL CTA -->
+  <section class="final-cta-section" id="contact-cta">
+    <div class="final-cta-bg">
+      <img 
+        src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=2400&q=85" 
+        alt="Interior architectural living space overlooking nature" 
+        class="final-cta-img"
+      >
+      <div class="final-cta-overlay"></div>
+    </div>
+
+    <div class="container final-cta-content">
+      <span class="eyebrow eyebrow-light">Private Advisory</span>
+      <h2 class="final-cta-title">Ready to find what's next?</h2>
+      <p class="final-cta-sub">
+        Let's make your next move a meaningful one. Schedule a private consultation with our founding partners.
+      </p>
+      <a href="contact.html" class="btn btn-outline-light" id="final-conversation-cta">
+        Start a Conversation
+        <span class="btn-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 16. FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2>NORTH & KEY</h2>
+          <p>Find the place that moves you.</p>
+          <div class="footer-newsletter-wrap">
+            <span class="body-small" style="color: var(--text-light-muted); display:block; margin-bottom:10px;">Receive our private quarterly monograph</span>
+            <form class="newsletter-form" id="footer-newsletter-form">
+              <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+              <button type="submit" class="newsletter-btn" aria-label="Subscribe">&rarr;</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="properties.html">Properties</a></li>
+              <li><a href="properties.html?action=buy">Buy</a></li>
+              <li><a href="properties.html?action=sell">Sell</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="journal.html">Journal</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="mailto:hello@northandkey.com">hello@northandkey.com</a></li>
+              <li><a href="tel:+10000000000">+1 000 000 0000</a></li>
+              <li><span style="color: var(--text-light-muted);">Malibu &bull; Aspen</span></li>
+              <li><span style="color: var(--text-light-muted);">New York &bull; London</span></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://pinterest.com" target="_blank" rel="noopener">Pinterest</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-banner-wordmark">
+        <div class="massive-wordmark">NORTH & KEY</div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 North & Key. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Advisory</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Data & Logic Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

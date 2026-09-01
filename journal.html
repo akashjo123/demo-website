@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editorial Journal | NORTH & KEY</title>
+  <meta name="description" content="Essays, architectural dialogues, and market perspectives curated by the North & Key editorial desk.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Libraries -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div id="custom-cursor"></div>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay">
+    <div class="menu-overlay-inner">
+      <nav class="menu-overlay-nav">
+        <a href="index.html" class="menu-overlay-link"><span class="num">01</span> Home</a>
+        <a href="properties.html" class="menu-overlay-link"><span class="num">02</span> Properties</a>
+        <a href="properties.html?action=buy" class="menu-overlay-link"><span class="num">03</span> Buy</a>
+        <a href="properties.html?action=sell" class="menu-overlay-link"><span class="num">04</span> Sell</a>
+        <a href="about.html" class="menu-overlay-link"><span class="num">05</span> About</a>
+        <a href="journal.html" class="menu-overlay-link"><span class="num">06</span> Journal</a>
+        <a href="contact.html" class="menu-overlay-link"><span class="num">07</span> Contact</a>
+      </nav>
+      <div class="menu-overlay-aside">
+        <div class="menu-aside-block">
+          <h4>Private Client Advisory</h4>
+          <p>concierge@northandkey.com<br>+1 (310) 892-4400</p>
+        </div>
+        <div class="menu-aside-block">
+          <h4>Locations</h4>
+          <p>Malibu Atelier &bull; Aspen Gallery<br>Tribeca Studio &bull; London Mayfair</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header scrolled">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" id="header-brand-logo">
+        NORTH <span>&</span> KEY
+      </a>
+      
+      <nav class="header-nav">
+        <a href="properties.html" class="nav-link">Properties</a>
+        <a href="properties.html?action=buy" class="nav-link">Buy</a>
+        <a href="properties.html?action=sell" class="nav-link">Sell</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="journal.html" class="nav-link active">Journal</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="contact.html" class="btn-header">Private Inquiry</a>
+        <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">The Publication</span>
+      <h1 class="heading-1" style="margin-top: 16px;">From the Journal</h1>
+      <p class="body-large" style="max-width: 680px; margin-top: 16px;">
+        Critical essays, architectural monographs, and market perspectives exploring the cultural intersection of design, place, and living well.
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Lead Story -->
+  <section class="container" style="margin-top: 40px; margin-bottom: 80px;">
+    <article id="article-1" style="display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; text-decoration: none; color: inherit;" class="responsive-2col">
+      <div style="width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: #000;">
+        <img 
+          src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=85" 
+          alt="The Architecture of Home" 
+          style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-luxury);"
+          onmouseover="this.style.transform='scale(1.03)'" 
+          onmouseout="this.style.transform='scale(1)'"
+        >
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; gap: 16px; align-items: center; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-olive); font-weight: 600;">
+          <span>Featured Essay</span>
+          <span style="color: var(--text-muted);">&bull;</span>
+          <span style="color: var(--text-muted);">6 min read</span>
+        </div>
+        <h2 class="heading-2">The Architecture of Home: Why Space Influences Emotion</h2>
+        <p class="body-large" style="color: var(--text-secondary);">
+          An investigation into how proportional volume, honest materials, and natural daylight fundamentally shape human tranquility inside contemporary domestic spaces.
+        </p>
+        <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-muted);">
+          By Elena Vance, Architecture Editor &bull; August 24, 2026
+        </div>
+        <div style="margin-top: 12px;">
+          <span class="link-editorial">Read Complete Essay &rarr;</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Articles Grid Section -->
+  <section class="container" style="padding-bottom: clamp(100px, 14vh, 180px);">
+    <div class="section-header-editorial">
+      <div>
+        <span class="eyebrow">Recent Dispatches</span>
+        <h2 class="heading-2" style="margin-top: 16px;">All Essays & Guides</h2>
+      </div>
+    </div>
+
+    <div class="journal-grid">
+      
+      <!-- Article 2 -->
+      <article id="article-2" class="journal-card">
+        <div class="journal-image-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85" 
+            alt="Five Things to Know Before You Buy" 
+            class="journal-image"
+          >
+        </div>
+        <div class="journal-meta">
+          <span>Market Insights</span>
+          <span class="journal-date">July 18, 2026 &bull; 8 min</span>
+        </div>
+        <h3 class="journal-title">Five Things to Know Before You Buy an Architectural Landmark</h3>
+        <p class="body-small">
+          Acquiring an architecturally significant estate is both a patron act and an investment strategy. Here is our advisory framework for stewardship and preservation.
+        </p>
+        <div class="journal-link-arrow">
+          Read Guide <span>&rarr;</span>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article id="article-3" class="journal-card">
+        <div class="journal-image-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85" 
+            alt="The Neighborhoods Defining Tomorrow" 
+            class="journal-image"
+          >
+        </div>
+        <div class="journal-meta">
+          <span>Living</span>
+          <span class="journal-date">June 05, 2026 &bull; 5 min</span>
+        </div>
+        <h3 class="journal-title">The Neighborhoods Defining Tomorrow: Solitude and Connectedness</h3>
+        <p class="body-small">
+          From Montecito to the quietest corners of West Sussex, luxury buyers are shifting toward environments that offer privacy without sacrificing cultural proximity.
+        </p>
+        <div class="journal-link-arrow">
+          Read Perspective <span>&rarr;</span>
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article id="article-4" class="journal-card">
+        <div class="journal-image-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" 
+            alt="Light as Material" 
+            class="journal-image"
+          >
+        </div>
+        <div class="journal-meta">
+          <span>Interiors</span>
+          <span class="journal-date">May 12, 2026 &bull; 4 min</span>
+        </div>
+        <h3 class="journal-title">Light as Material: How Alpine Architecture Harvests the Sun</h3>
+        <p class="body-small">
+          A study of high-altitude glazing and thermal mass in the contemporary lodges of the American Mountain West.
+        </p>
+        <div class="journal-link-arrow">
+          Read Essay <span>&rarr;</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Monograph Subscription Banner -->
+    <div style="margin-top: 100px; padding: clamp(40px, 6vw, 80px); background: var(--bg-surface); border: 1px solid var(--border-medium); display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap;">
+      <div style="max-width: 600px;">
+        <span class="eyebrow">Print Edition</span>
+        <h3 class="heading-2" style="margin-top: 10px; margin-bottom: 12px;">North & Key Monograph Volume IV</h3>
+        <p class="body-medium">
+          Published biannually in hardcover. Delivered privately to clients, patrons, and collectors worldwide.
+        </p>
+      </div>
+      <a href="contact.html?subject=monograph" class="btn btn-primary">
+        Request Print Copy &rarr;
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2>NORTH & KEY</h2>
+          <p>Find the place that moves you.</p>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="properties.html">Properties</a></li>
+              <li><a href="properties.html?action=buy">Buy</a></li>
+              <li><a href="properties.html?action=sell">Sell</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="journal.html">Journal</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Inquiries</h4>
+            <ul>
+              <li><a href="mailto:hello@northandkey.com">hello@northandkey.com</a></li>
+              <li><a href="tel:+10000000000">+1 000 000 0000</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 North & Key. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Advisory</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

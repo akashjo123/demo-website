@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properties Collection | NORTH & KEY</title>
+  <meta name="description" content="Explore North & Key's curated architectural portfolio of modernist estates, alpine pavilions, and historic residences.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Libraries -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div id="custom-cursor"></div>
+
+  <!-- Fullscreen Editorial Menu Overlay -->
+  <div class="menu-overlay">
+    <div class="menu-overlay-inner">
+      <nav class="menu-overlay-nav">
+        <a href="index.html" class="menu-overlay-link"><span class="num">01</span> Home</a>
+        <a href="properties.html" class="menu-overlay-link"><span class="num">02</span> Properties</a>
+        <a href="properties.html?action=buy" class="menu-overlay-link"><span class="num">03</span> Buy</a>
+        <a href="properties.html?action=sell" class="menu-overlay-link"><span class="num">04</span> Sell</a>
+        <a href="about.html" class="menu-overlay-link"><span class="num">05</span> About</a>
+        <a href="journal.html" class="menu-overlay-link"><span class="num">06</span> Journal</a>
+        <a href="contact.html" class="menu-overlay-link"><span class="num">07</span> Contact</a>
+      </nav>
+      <div class="menu-overlay-aside">
+        <div class="menu-aside-block">
+          <h4>Private Client Advisory</h4>
+          <p>concierge@northandkey.com<br>+1 (310) 892-4400</p>
+        </div>
+        <div class="menu-aside-block">
+          <h4>Locations</h4>
+          <p>Malibu Atelier &bull; Aspen Gallery<br>Tribeca Studio &bull; London Mayfair</p>
+        </div>
+        <div class="menu-aside-block">
+          <h4>Editorial Philosophy</h4>
+          <p class="body-small">"We believe architecture is the quiet backdrop to extraordinary lives."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed Header (Starts in solid/scrolled styling for content readability) -->
+  <header class="site-header scrolled">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" id="header-brand-logo">
+        NORTH <span>&</span> KEY
+      </a>
+      
+      <nav class="header-nav">
+        <a href="properties.html" class="nav-link active">Properties</a>
+        <a href="properties.html?action=buy" class="nav-link">Buy</a>
+        <a href="properties.html?action=sell" class="nav-link">Sell</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="journal.html" class="nav-link">Journal</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="contact.html" class="btn-header">Private Inquiry</a>
+        <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Editorial Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">The Catalog</span>
+      <h1 class="heading-1" style="margin-top: 16px;">Find your next place.</h1>
+      <p class="body-large" style="max-width: 680px; margin-top: 16px;">
+        A curated selection of architectural residences, coastal sanctuaries, and alpine compounds curated for enduring quality of life.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sticky Search & Filter Bar -->
+  <div class="search-filters-bar">
+    <div class="container">
+      <div class="filter-controls-row">
+        
+        <!-- Search Input -->
+        <div class="search-input-group">
+          <i data-lucide="search" class="search-icon-pos" style="width: 18px; height: 18px;"></i>
+          <input 
+            type="text" 
+            id="property-search-input" 
+            class="search-input-field" 
+            placeholder="Search location, neighborhood, architect..."
+          >
+        </div>
+
+        <!-- Buy / Rent Filter Pills -->
+        <div class="filter-pills-group">
+          <button class="filter-pill-btn buy-rent-pill active" data-category="all">All</button>
+          <button class="filter-pill-btn buy-rent-pill" data-category="buy">Buy</button>
+        </div>
+
+        <!-- Property Type Select -->
+        <div class="filter-pills-group">
+          <select id="property-type-select" class="filter-select" aria-label="Property Type">
+            <option value="all">Property Type: All</option>
+            <option value="Modernist Villa">Modernist Villa</option>
+            <option value="Architectural Compound">Architectural Compound</option>
+            <option value="Coastal Estate">Coastal Estate</option>
+            <option value="Minimalist Loft">Minimalist Loft</option>
+            <option value="Historic Townhouse">Historic Townhouse</option>
+          </select>
+
+          <!-- Price Select -->
+          <select id="property-price-select" class="filter-select" aria-label="Price Range">
+            <option value="all">Price: Any</option>
+            <option value="under-5m">Under $5,000,000</option>
+            <option value="5m-10m">$5M &ndash; $10,000,000</option>
+            <option value="over-10m">$10,000,000+</option>
+          </select>
+
+          <!-- Bedrooms Select -->
+          <select id="property-beds-select" class="filter-select" aria-label="Bedrooms">
+            <option value="all">Bedrooms: Any</option>
+            <option value="3">3+ Bedrooms</option>
+            <option value="4">4+ Bedrooms</option>
+            <option value="5">5+ Bedrooms</option>
+          </select>
+
+          <!-- Sort Select -->
+          <select id="property-sort-select" class="filter-select" aria-label="Sort by">
+            <option value="featured">Sort: Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="beds-desc">Most Bedrooms</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Split-Screen Discovery Experience -->
+  <main class="split-screen-layout">
+    
+    <!-- Left Column: Property Cards List -->
+    <div class="split-list-column">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border-subtle);">
+        <span id="results-count-display" style="font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--accent-olive);">
+          Loading Residences...
+        </span>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">
+          Updated Daily &bull; Private Portfolio
+        </span>
+      </div>
+
+      <div id="properties-list-container">
+        <!-- Rendered via js/properties.js -->
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Architectural Vector Map -->
+    <div class="split-map-column">
+      <div class="interactive-map-canvas">
+        <div class="map-grid-layer"></div>
+        
+        <!-- Architectural Contour SVG Graphic -->
+        <svg class="map-svg-topography" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="400" cy="400" r="350" fill="none" stroke="rgba(102, 112, 90, 0.15)" stroke-width="1.5" stroke-dasharray="6,6"/>
+          <circle cx="400" cy="400" r="260" fill="none" stroke="rgba(102, 112, 90, 0.18)" stroke-width="1.5"/>
+          <circle cx="400" cy="400" r="160" fill="none" stroke="rgba(102, 112, 90, 0.22)" stroke-width="1.5"/>
+          <path d="M 50,300 Q 300,100 750,450" fill="none" stroke="rgba(184, 93, 56, 0.25)" stroke-width="1.5"/>
+          <path d="M 100,600 Q 450,700 700,200" fill="none" stroke="rgba(102, 112, 90, 0.2)" stroke-width="1.5"/>
+        </svg>
+
+        <!-- Map Coordinate Pins Container -->
+        <div id="map-pins-container">
+          <!-- Rendered dynamically by js/properties.js -->
+        </div>
+
+        <div style="position: absolute; bottom: 24px; left: 24px; background: rgba(245, 243, 238, 0.88); backdrop-filter: blur(8px); padding: 8px 16px; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); border: 1px solid var(--border-medium);">
+          Architectural Geographic Coordinates &bull; Active Sync
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Mobile Map / List Toggle Floating Button -->
+  <button id="mobile-map-toggle-btn" class="mobile-view-toggle" aria-label="Toggle between map and list view">
+    <i data-lucide="map-pin" style="width:16px;height:16px;"></i> Show Map
+  </button>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2>NORTH & KEY</h2>
+          <p>Find the place that moves you.</p>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="properties.html">Properties</a></li>
+              <li><a href="properties.html?action=buy">Buy</a></li>
+              <li><a href="properties.html?action=sell">Sell</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="journal.html">Journal</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Inquiries</h4>
+            <ul>
+              <li><a href="mailto:hello@northandkey.com">hello@northandkey.com</a></li>
+              <li><a href="tel:+10000000000">+1 000 000 0000</a></li>
+              <li><span style="color: var(--text-light-muted);">Malibu &bull; Aspen &bull; New York</span></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 North & Key. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Advisory</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/properties.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

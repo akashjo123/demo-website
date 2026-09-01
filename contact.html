@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Private Advisory | NORTH & KEY</title>
+  <meta name="description" content="Inquire privately with North & Key's founding partners regarding acquisitions, representations, and architectural advisory.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Libraries -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div id="custom-cursor"></div>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay">
+    <div class="menu-overlay-inner">
+      <nav class="menu-overlay-nav">
+        <a href="index.html" class="menu-overlay-link"><span class="num">01</span> Home</a>
+        <a href="properties.html" class="menu-overlay-link"><span class="num">02</span> Properties</a>
+        <a href="properties.html?action=buy" class="menu-overlay-link"><span class="num">03</span> Buy</a>
+        <a href="properties.html?action=sell" class="menu-overlay-link"><span class="num">04</span> Sell</a>
+        <a href="about.html" class="menu-overlay-link"><span class="num">05</span> About</a>
+        <a href="journal.html" class="menu-overlay-link"><span class="num">06</span> Journal</a>
+        <a href="contact.html" class="menu-overlay-link"><span class="num">07</span> Contact</a>
+      </nav>
+      <div class="menu-overlay-aside">
+        <div class="menu-aside-block">
+          <h4>Private Client Advisory</h4>
+          <p>concierge@northandkey.com<br>+1 (310) 892-4400</p>
+        </div>
+        <div class="menu-aside-block">
+          <h4>Locations</h4>
+          <p>Malibu Atelier &bull; Aspen Gallery<br>Tribeca Studio &bull; London Mayfair</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header scrolled">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" id="header-brand-logo">
+        NORTH <span>&</span> KEY
+      </a>
+      
+      <nav class="header-nav">
+        <a href="properties.html" class="nav-link">Properties</a>
+        <a href="properties.html?action=buy" class="nav-link">Buy</a>
+        <a href="properties.html?action=sell" class="nav-link">Sell</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="journal.html" class="nav-link">Journal</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">Initiate Contact</span>
+      <h1 class="heading-1" style="margin-top: 16px;">Start a Conversation.</h1>
+      <p class="body-large" style="max-width: 680px; margin-top: 16px;">
+        Every meaningful collaboration begins with dialogue. All inquiries are received directly by our founding principals with strict confidentiality.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Contact Grid -->
+  <main class="container" style="padding-top: clamp(60px, 8vh, 90px); padding-bottom: clamp(100px, 14vh, 180px);">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(40px, 7vw, 100px); align-items: start;" class="responsive-2col">
+      
+      <!-- Left: Editorial Form -->
+      <div style="background-color: #FFFFFF; border: 1px solid var(--border-medium); padding: clamp(32px, 5vw, 64px);">
+        <h2 class="heading-2" style="margin-bottom: 8px;">Private Inquiry</h2>
+        <p class="body-small" style="margin-bottom: 32px;">Please indicate the nature of your interest below.</p>
+
+        <form id="contact-form">
+          <div class="editorial-form-group">
+            <label class="editorial-label">Nature of Inquiry</label>
+            <select class="editorial-input" id="inquiry-nature-select" required>
+              <option value="buy">Acquiring a Residence (Buying)</option>
+              <option value="sell">Representing a Residence (Selling)</option>
+              <option value="advisory">Private Portfolio Advisory</option>
+              <option value="press">Press & Editorial Publication</option>
+              <option value="monograph">Monograph Print Subscription</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" class="responsive-2col">
+            <div class="editorial-form-group">
+              <label class="editorial-label">First Name</label>
+              <input type="text" class="editorial-input" placeholder="e.g. Harrison" required>
+            </div>
+            <div class="editorial-form-group">
+              <label class="editorial-label">Last Name</label>
+              <input type="text" class="editorial-input" placeholder="e.g. Vance" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" class="responsive-2col">
+            <div class="editorial-form-group">
+              <label class="editorial-label">Email Address</label>
+              <input type="email" class="editorial-input" placeholder="harrison@domain.com" required>
+            </div>
+            <div class="editorial-form-group">
+              <label class="editorial-label">Phone Number</label>
+              <input type="tel" class="editorial-input" placeholder="+1 (000) 000-0000" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" class="responsive-2col">
+            <div class="editorial-form-group">
+              <label class="editorial-label">Primary Market</label>
+              <select class="editorial-input">
+                <option value="malibu">Malibu / California Coast</option>
+                <option value="aspen">Aspen / Colorado Alpine</option>
+                <option value="nyc">New York / Tribeca & Hamptons</option>
+                <option value="london">London / European Capitals</option>
+                <option value="other">International / Other</option>
+              </select>
+            </div>
+            <div class="editorial-form-group">
+              <label class="editorial-label">Estimated Value Range</label>
+              <select class="editorial-input">
+                <option value="under-5m">$2M &ndash; $5M</option>
+                <option value="5m-10m">$5M &ndash; $10M</option>
+                <option value="10m-20m">$10M &ndash; $20M</option>
+                <option value="over-20m">$20M+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="editorial-form-group">
+            <label class="editorial-label">Architectural Criteria or Narrative</label>
+            <textarea class="editorial-textarea" rows="4" placeholder="Tell us about the space or aesthetic you envision..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 12px;">
+            Submit Private Inquiry
+            <span class="btn-arrow">&rarr;</span>
+          </button>
+        </form>
+
+        <div id="contact-success-toast" style="display: none; padding: 40px 0; text-align: center;">
+          <i data-lucide="check-circle" style="width: 48px; height: 48px; color: var(--accent-olive); margin: 0 auto 16px;"></i>
+          <h3 class="heading-3" style="margin-bottom: 8px;">Inquiry Confirmed</h3>
+          <p class="body-medium">Thank you. A founding partner will review your inquiry with discretion and be in touch within 24 hours.</p>
+        </div>
+      </div>
+
+      <!-- Right: Direct Desks & Office Ateliers -->
+      <aside>
+        <div style="margin-bottom: 48px;">
+          <span class="eyebrow">Private Desk</span>
+          <h3 class="heading-3" style="margin-top: 12px; margin-bottom: 16px;">Direct Concierge</h3>
+          <p class="body-medium" style="margin-bottom: 20px;">
+            For immediate inquiries regarding off-market acquisitions or time-sensitive transactions:
+          </p>
+          <p style="font-size: 1.15rem; font-weight: 500; margin-bottom: 6px;">
+            <a href="tel:+13108924400" style="text-decoration: underline;">+1 (310) 892-4400</a>
+          </p>
+          <p style="font-size: 1.05rem; color: var(--accent-olive); margin-bottom: 24px;">
+            <a href="mailto:concierge@northandkey.com">concierge@northandkey.com</a>
+          </p>
+          <p class="body-small">Desk Hours: 08:00 &ndash; 20:00 PST / EST / GMT</p>
+        </div>
+
+        <div style="border-top: 1px solid var(--border-subtle); padding-top: 40px;">
+          <span class="eyebrow">Our Ateliers</span>
+          <div style="display: flex; flex-direction: column; gap: 24px; margin-top: 20px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 4px;">Malibu Atelier</h4>
+              <p class="body-small">29100 Pacific Coast Highway, Suite 400<br>Malibu, CA 90265</p>
+            </div>
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 4px;">Aspen Alpine Gallery</h4>
+              <p class="body-small">420 East Cooper Avenue<br>Aspen, CO 81611</p>
+            </div>
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 4px;">Tribeca Salon</h4>
+              <p class="body-small">67 Franklin Street, Floor 3<br>New York, NY 10013</p>
+            </div>
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 4px;">Mayfair European Office</h4>
+              <p class="body-small">14 Berkeley Square<br>London, W1J 6BL</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2>NORTH & KEY</h2>
+          <p>Find the place that moves you.</p>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="properties.html">Properties</a></li>
+              <li><a href="properties.html?action=buy">Buy</a></li>
+              <li><a href="properties.html?action=sell">Sell</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="journal.html">Journal</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Inquiries</h4>
+            <ul>
+              <li><a href="mailto:hello@northandkey.com">hello@northandkey.com</a></li>
+              <li><a href="tel:+10000000000">+1 000 000 0000</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 North & Key. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Advisory</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Auto-select nature from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type') || urlParams.get('subject');
+    if (type) {
+      const select = document.getElementById('inquiry-nature-select');
+      if (select) {
+        if (type.includes('sell')) select.value = 'sell';
+        else if (type.includes('invest') || type.includes('advisory')) select.value = 'advisory';
+        else if (type.includes('monograph')) select.value = 'monograph';
+      }
+    }
+
+    // Handle Contact Form Submit
+    const contactForm = document.getElementById('contact-form');
+    const toast = document.getElementById('contact-success-toast');
+    if (contactForm && toast) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        contactForm.style.display = 'none';
+        toast.style.display = 'block';
+      });
+    }
+  </script>
+</body>
+</html>
