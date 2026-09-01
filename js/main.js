@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initFirstScrollAnimation();
   initStatementReveal();
   initScrollControlledVideo();
+  initHorizontalPropertyScroll();
+  initPinnedStorySection();
   initNewsletter();
 });
 
@@ -785,4 +787,82 @@ function initScrollControlledVideo() {
 
   // Start smooth loop
   rafId = requestAnimationFrame(renderVideoScrub);
+}
+
+/* --- 13. Horizontal Property Showcase — Pinned Vertical-to-Horizontal Scroll --- */
+function initHorizontalPropertyScroll() {
+  const section = document.querySelector('.horizontal-gallery-section');
+  const track = document.querySelector('.horizontal-track');
+  const counter = document.querySelector('.horizontal-counter-badge');
+  if (!section || !track) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion || window.innerWidth < 768) return;
+
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 120);
+
+  const horizontalTween = gsap.to(track, {
+    x: getScrollAmount,
+    ease: 'none',
+  });
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top top',
+    end: () => `+=${Math.max(window.innerHeight * 2, track.scrollWidth - window.innerWidth)}`,
+    pin: true,
+    animation: horizontalTween,
+    scrub: 1.2,
+    invalidateOnRefresh: true,
+    anticipatePin: 1,
+    onUpdate: (self) => {
+      if (counter) {
+        const total = 4;
+        const current = Math.min(total, Math.max(1, Math.floor(self.progress * total) + 1));
+        counter.textContent = `0${current} / 0${total} Collection`;
+      }
+    }
+  });
+}
+
+/* --- 14. Pinned Storytelling Section — Multi-State Narrative Cross-fade --- */
+function initPinnedStorySection() {
+  const section = document.querySelector('.pinned-story-section');
+  const slides = document.querySelectorAll('.story-visual-slide');
+  const stepBlocks = document.querySelectorAll('.story-step-block');
+  if (!section || !slides.length || !stepBlocks.length) return;
+
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  stepBlocks.forEach((block, idx) => {
+    ScrollTrigger.create({
+      trigger: block,
+      start: 'top 60%',
+      end: 'bottom 40%',
+      onEnter: () => activateStep(idx),
+      onEnterBack: () => activateStep(idx),
+    });
+  });
+
+  function activateStep(index) {
+    stepBlocks.forEach((b, i) => {
+      if (i === index) {
+        b.classList.add('active');
+      } else {
+        b.classList.remove('active');
+      }
+    });
+
+    slides.forEach((s, i) => {
+      if (i === index) {
+        s.classList.add('active');
+      } else {
+        s.classList.remove('active');
+      }
+    });
+  }
 }
