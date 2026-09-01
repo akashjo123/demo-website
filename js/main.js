@@ -235,8 +235,13 @@ function initHeroAnimations() {
         duration: 0.35,
         ease: 'none'
       }, 0)
+      .to(eyebrow, {
+        y: -25,
+        duration: 1.1,
+        ease: 'none'
+      }, 0)
       .to(giantTitle, {
-        y: -30,
+        y: -25,
         duration: 1.1,
         ease: 'none'
       }, 0)

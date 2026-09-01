@@ -660,7 +660,7 @@ input, textarea, select {
 /* Giant Background Typography Behind Villa */
 .hero-arch-giant-title-wrap {
   position: absolute;
-  top: 15%;
+  top: 13%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -674,12 +674,12 @@ input, textarea, select {
 }
 
 .hero-arch-eyebrow {
-  font-size: 0.72rem;
+  font-size: clamp(0.72rem, 0.88vw, 0.84rem);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent-olive);
   font-weight: 600;
-  margin-bottom: 12px;
+  margin: 0 0 clamp(20px, 3vh, 32px) 0;
   will-change: transform, opacity;
 }
 
@@ -689,7 +689,7 @@ input, textarea, select {
   font-weight: 900;
   letter-spacing: -0.04em;
   color: #0A0A09;
-  line-height: 0.85;
+  line-height: 1.05;
   text-transform: uppercase;
   margin: 0;
   white-space: nowrap;
